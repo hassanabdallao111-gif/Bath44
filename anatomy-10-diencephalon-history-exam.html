@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neuroscience | Diencephalon & Neurological History-Taking</title>
+<style>
+:root{
+  --navy:#0a1e3f;
+  --navy2:#122a52;
+  --blue:#1e5fa8;
+  --blue-light:#3f8ae0;
+  --gold:#c9a227;
+  --gold-light:#e8cf6e;
+  --bg:#f4f7fb;
+  --card:#ffffff;
+  --ink:#152238;
+  --muted:#5b6b85;
+  --line:#dde6f2;
+  --danger:#b0333f;
+  --good:#1c8b5a;
+  --radius:14px;
+  --shadow:0 6px 24px rgba(10,30,63,.08);
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  display:flex;
+  min-height:100vh;
+}
+::-webkit-scrollbar{width:10px;height:10px;}
+::-webkit-scrollbar-thumb{background:#c3d3e8;border-radius:8px;}
+::-webkit-scrollbar-track{background:transparent;}
+
+/* SIDEBAR */
+#sidebar{
+  width:290px;
+  min-width:290px;
+  background:linear-gradient(180deg,var(--navy) 0%, var(--navy2) 100%);
+  color:#eaf1fb;
+  position:sticky;
+  top:0;
+  height:100vh;
+  overflow-y:auto;
+  padding:22px 16px 30px;
+  z-index:50;
+}
+#sidebar .brand{
+  display:flex;align-items:center;gap:10px;
+  padding:0 6px 18px;
+  border-bottom:1px solid rgba(255,255,255,.12);
+  margin-bottom:16px;
+}
+#sidebar .brand .logo{
+  width:38px;height:38px;border-radius:10px;
+  background:radial-gradient(circle at 30% 30%, var(--gold-light), var(--gold) 70%);
+  display:flex;align-items:center;justify-content:center;font-size:20px;
+  box-shadow:0 3px 10px rgba(0,0,0,.3);
+}
+#sidebar .brand div h1{font-size:15px;margin:0;font-weight:700;letter-spacing:.3px;}
+#sidebar .brand div p{margin:2px 0 0;font-size:11px;color:#a9bdda;}
+
+#search-box{
+  width:100%;padding:9px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.07);color:#fff;font-size:13px;margin-bottom:14px;
+}
+#search-box::placeholder{color:#93a8c8;}
+
+.progress-wrap{margin-bottom:16px;padding:10px 12px;background:rgba(255,255,255,.06);border-radius:10px;}
+.progress-wrap .plabel{display:flex;justify-content:space-between;font-size:11px;color:#b9cae6;margin-bottom:6px;}
+.progress-bar-bg{height:7px;border-radius:5px;background:rgba(255,255,255,.15);overflow:hidden;}
+.progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));width:0%;transition:width .4s;}
+
+.nav-group-title{
+  font-size:10.5px;text-transform:uppercase;letter-spacing:1px;color:#7f95bb;
+  margin:16px 6px 6px;font-weight:700;
+}
+.nav-item{
+  display:flex;align-items:center;gap:10px;
+  padding:9px 10px;border-radius:9px;margin-bottom:3px;cursor:pointer;
+  font-size:13.5px;color:#d8e3f4;transition:.15s;
+}
+.nav-item:hover{background:rgba(255,255,255,.08);}
+.nav-item.active{background:linear-gradient(90deg, rgba(201,162,39,.25), rgba(201,162,39,.05));color:#fff;font-weight:600;border-left:3px solid var(--gold);padding-left:7px;}
+.nav-item .chk{
+  width:15px;height:15px;border-radius:4px;border:1.5px solid #6c81a8;flex:0 0 15px;
+  display:flex;align-items:center;justify-content:center;font-size:10px;
+}
+.nav-item .chk.done{background:var(--good);border-color:var(--good);color:#fff;}
+.nav-item .lbl{flex:1;}
+
+/* MAIN */
+#main{flex:1;min-width:0;padding:34px 42px 80px;max-width:1180px;margin:0 auto;}
+.section{display:none;animation:fadeIn .35s ease;}
+.section.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+.page-head{margin-bottom:26px;}
+.eyebrow{color:var(--blue);font-weight:700;font-size:12.5px;text-transform:uppercase;letter-spacing:1.5px;}
+h1.page-title{font-size:30px;margin:6px 0 8px;color:var(--navy);}
+.page-sub{color:var(--muted);font-size:15px;max-width:760px;line-height:1.55;}
+
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px 24px;margin-bottom:20px;box-shadow:var(--shadow);
+}
+.card h2{color:var(--navy);font-size:20px;margin:0 0 12px;display:flex;align-items:center;gap:8px;}
+.card h3{color:var(--blue);font-size:16px;margin:18px 0 8px;}
+.card p, .card li{color:#2c3a52;font-size:14.5px;line-height:1.7;}
+.card ul{padding-left:20px;margin:8px 0;}
+
+.badge{
+  display:inline-block;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:700;margin-left:6px;
+}
+.badge.hy1{background:#fff2cc;color:#8a6d00;}
+.badge.hy2{background:#ffe3b3;color:#8a4b00;}
+.badge.hy3{background:#ffd0d0;color:#a30000;}
+.badge.clin{background:#e0f0e8;color:var(--good);}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
+@media(max-width:900px){.grid2,.grid3{grid-template-columns:1fr;}}
+
+.struct-card{
+  background:#f7fafd;border:1px solid var(--line);border-radius:11px;padding:14px 16px;
+}
+.struct-card b{color:var(--navy);}
+
+figure.img-wrap{
+  margin:14px 0;background:#f7fafd;border:1px solid var(--line);border-radius:12px;overflow:hidden;
+}
+figure.img-wrap img{width:100%;display:block;background:#eef3fa;max-height:340px;object-fit:contain;padding:10px;}
+figure.img-wrap figcaption{padding:8px 14px 12px;font-size:12px;color:var(--muted);border-top:1px dashed var(--line);}
+figure.img-wrap figcaption a{color:var(--blue);}
+
+.pearl-box{
+  border-left:4px solid var(--gold);background:#fdf8e9;border-radius:0 10px 10px 0;
+  padding:12px 16px;margin:10px 0;font-size:14px;
+}
+.clin-box{
+  border-left:4px solid var(--good);background:#eef8f2;border-radius:0 10px 10px 0;
+  padding:12px 16px;margin:10px 0;font-size:14px;
+}
+
+table.cmp{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;}
+table.cmp th{background:var(--navy);color:#fff;padding:9px 10px;text-align:left;}
+table.cmp td{padding:9px 10px;border-bottom:1px solid var(--line);}
+table.cmp tr:nth-child(even){background:#f7fafd;}
+
+/* flashcards */
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;}
+.fc{
+  perspective:1200px;height:170px;cursor:pointer;
+}
+.fc-inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d;}
+.fc.flipped .fc-inner{transform:rotateY(180deg);}
+.fc-face{
+  position:absolute;inset:0;border-radius:12px;padding:16px;display:flex;align-items:center;justify-content:center;
+  text-align:center;font-size:14px;backface-visibility:hidden;box-shadow:var(--shadow);
+}
+.fc-front{background:linear-gradient(145deg,var(--navy),var(--navy2));color:#fff;font-weight:600;}
+.fc-back{background:#fff;border:2px solid var(--gold);color:var(--ink);transform:rotateY(180deg);font-size:13px;}
+
+/* MCQ */
+.mcq{border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:16px;background:#fff;}
+.mcq .q{font-weight:600;margin-bottom:10px;color:var(--navy);}
+.opt{
+  display:block;width:100%;text-align:left;padding:9px 12px;border-radius:8px;border:1px solid var(--line);
+  background:#f7fafd;margin-bottom:7px;cursor:pointer;font-size:13.5px;color:var(--ink);
+}
+.opt:hover{background:#eef3fa;}
+.opt.correct{background:#e0f0e8;border-color:var(--good);color:var(--good);font-weight:600;}
+.opt.wrong{background:#fbe2e2;border-color:var(--danger);color:var(--danger);}
+.mcq .explain{display:none;margin-top:8px;font-size:13px;background:#fdf8e9;padding:9px 12px;border-radius:8px;color:#6b5400;}
+
+.viva-item{border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden;}
+.viva-q{padding:11px 14px;background:#f7fafd;cursor:pointer;font-weight:600;font-size:14px;color:var(--navy);display:flex;justify-content:space-between;}
+.viva-a{max-height:0;overflow:hidden;transition:max-height .3s;padding:0 14px;font-size:13.5px;color:#2c3a52;}
+.viva-item.open .viva-a{max-height:400px;padding:10px 14px 14px;}
+
+.gloss-term{font-weight:700;color:var(--navy);}
+.footer-credit{text-align:center;color:var(--muted);font-size:12px;margin-top:40px;padding-top:18px;border-top:1px solid var(--line);}
+
+@media(max-width:820px){
+  body{flex-direction:column;}
+  #sidebar{position:relative;height:auto;width:100%;min-width:0;}
+  #main{padding:20px;}
+  .grid2,.grid3{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<nav id="sidebar">
+  <div class="brand">
+    <div class="logo">🧠</div>
+    <div>
+      <h1>Neuroscience</h1>
+      <p>CNS Series · Batch 44</p>
+    </div>
+  </div>
+  <input id="search-box" type="text" placeholder="🔍 Search topics...">
+  <div class="progress-wrap">
+    <div class="plabel"><span>Your progress</span><span id="progress-pct">0%</span></div>
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill"></div></div>
+  </div>
+
+  <div class="nav-group-title">Start Here</div>
+  <div class="nav-item" data-target="overview"><span class="chk" data-id="overview"></span><span class="lbl">🧭 Overview</span></div>
+
+  <div class="nav-group-title">Diencephalon</div>
+  <div class="nav-item" data-target="dien-intro"><span class="chk" data-id="dien-intro"></span><span class="lbl">📍 Location & Extensions</span></div>
+  <div class="nav-item" data-target="dien-surfaces"><span class="chk" data-id="dien-surfaces"></span><span class="lbl">🧩 Four Surfaces</span></div>
+  <div class="nav-item" data-target="thalamus"><span class="chk" data-id="thalamus"></span><span class="lbl">🥚 Thalamus</span></div>
+  <div class="nav-item" data-target="subthalamus"><span class="chk" data-id="subthalamus"></span><span class="lbl">⬇️ Subthalamus</span></div>
+  <div class="nav-item" data-target="epithalamus"><span class="chk" data-id="epithalamus"></span><span class="lbl">🌲 Epithalamus & Pineal</span></div>
+  <div class="nav-item" data-target="hypothalamus"><span class="chk" data-id="hypothalamus"></span><span class="lbl">⬇️⬇️ Hypothalamus</span></div>
+  <div class="nav-item" data-target="dien-pearls"><span class="chk" data-id="dien-pearls"></span><span class="lbl">🚨 High-Yield & Clinical Pearls</span></div>
+
+  <div class="nav-group-title">History & Examination</div>
+  <div class="nav-item" data-target="diseases"><span class="chk" data-id="diseases"></span><span class="lbl">🔬 Major Diseases</span></div>
+  <div class="nav-item" data-target="symptoms"><span class="chk" data-id="symptoms"></span><span class="lbl">🩺 Symptoms & History</span></div>
+  <div class="nav-item" data-target="exam"><span class="chk" data-id="exam"></span><span class="lbl">🧪 Neurological Examination</span></div>
+
+  <div class="nav-group-title">Revision</div>
+  <div class="nav-item" data-target="flashcards"><span class="chk" data-id="flashcards"></span><span class="lbl">🎴 Flashcards</span></div>
+  <div class="nav-item" data-target="mcqs"><span class="chk" data-id="mcqs"></span><span class="lbl">🎯 MCQs</span></div>
+  <div class="nav-item" data-target="glossary"><span class="chk" data-id="glossary"></span><span class="lbl">📖 Glossary</span></div>
+</nav>
+
+<main id="main">
+
+<!-- OVERVIEW -->
+<section class="section" id="sec-overview">
+  <div class="page-head">
+    <div class="eyebrow">CNS Series · Batch 44</div>
+    <h1 class="page-title">Neuroscience Dashboard</h1>
+    <p class="page-sub">Two integrated lectures: the anatomy of the <b>Diencephalon</b> (thalamus, subthalamus, epithalamus, hypothalamus) and the clinical approach to <b>History-Taking & Neurological Examination</b>. Navigate the sidebar, track your progress, and use the revision tools at the end.</p>
+  </div>
+
+  <figure class="img-wrap">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Blausen_0101_Brain_LateralView.png" alt="Lateral view of the human brain" onerror="this.closest('figure').style.display='none'">
+    <figcaption>Lateral view of the brain, showing the major lobes and brainstem. Source: Blausen Medical, Wikimedia Commons (CC BY 3.0).</figcaption>
+  </figure>
+
+  <div class="grid2">
+    <div class="card">
+      <h2>🎯 Learning Objectives</h2>
+      <ul>
+        <li>Define the diencephalon and locate it relative to the third ventricle.</li>
+        <li>Describe the anterior and posterior extensions of the diencephalon.</li>
+        <li>List and describe the four surfaces of the diencephalon.</li>
+        <li>Describe the four parts of the diencephalon: thalamus, subthalamus, epithalamus, hypothalamus.</li>
+        <li>Explain the endocrine role of the pineal gland.</li>
+        <li>Take a structured neurological history covering onset, cranial nerve, limb, and sphincter symptoms.</li>
+        <li>Perform and interpret core elements of the neurological examination (consciousness, orientation, memory, speech, tone, power).</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>🗺️ Lecture Roadmap</h2>
+      <ul>
+        <li><b>Lecture 1 — Diencephalon:</b> components, extensions, surfaces, and the four subdivisions.</li>
+        <li><b>Lecture 2 — History and Examination of the Nervous System:</b> major CNS diseases, symptom analysis, and the neurological examination.</li>
+      </ul>
+      <h3>Key Definitions</h3>
+      <div class="struct-card"><b>Diencephalon</b> — a midline forebrain structure with symmetrical right and left halves, consisting of the third ventricle and the structures forming its boundaries.</div>
+    </div>
+  </div>
+</section>
+
+<!-- DIENCEPHALON INTRO -->
+<section class="section" id="sec-dien-intro">
+  <div class="page-head">
+    <div class="eyebrow">Diencephalon · Neuroanatomy</div>
+    <h1 class="page-title">Location, Components & Extensions</h1>
+    <p class="page-sub">Based on the lecture on the Diencephalon.</p>
+  </div>
+
+  <div class="card">
+    <h2>📍 Location & Components</h2>
+    <p>The diencephalon is <b>one of the two parts of the forebrain</b> (the other being the cerebrum). The brain is divided into three major parts: the <b>forebrain</b> (cerebrum + diencephalon), the <b>midbrain</b>, and the <b>hindbrain</b>.</p>
+    <p>It is a <b>midline structure with symmetrical right and left halves</b> — one may refer to a "right diencephalon" and a "left diencephalon." It sits below the cerebral hemispheres and above the midbrain, occupying the medial aspect of each cerebral hemisphere.</p>
+    <div class="pearl-box"><b>Definition (verbatim concept):</b> The diencephalon consists of the <b>third ventricle</b> and the structures that form its boundaries — the <b>thalamus</b> and <b>hypothalamus</b>, which form the lateral wall and floor of the third ventricle.</div>
+    <figure class="img-wrap">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Blausen_0216_CerebrospinalSystem.png" alt="Ventricular system of the brain including the third ventricle" onerror="this.closest('figure').style.display='none'">
+      <figcaption>The cerebral ventricular system — the third ventricle sits at the midline, bounded by the thalamus and hypothalamus. Source: Blausen Medical, Wikimedia Commons (CC BY 3.0).</figcaption>
+    </figure>
+    <p>The gray matter that connects the two thalami across the third ventricle is the <b>interthalamic connection (adhesion)</b> — visible in cross-section as a bridge spanning the ventricular cavity.</p>
+  </div>
+
+  <div class="card">
+    <h2>↔️ Extensions of the Diencephalon <span class="badge hy2">⭐⭐ High Yield</span></h2>
+    <div class="grid2">
+      <div class="struct-card">
+        <b>Anterior extension</b>
+        <p>Extends forward as far as the <b>interventricular foramina</b> — the two openings connecting each lateral ventricle with the third ventricle.</p>
+      </div>
+      <div class="struct-card">
+        <b>Posterior extension</b>
+        <p>Extends backward to the point where the third ventricle becomes continuous with the <b>cerebral aqueduct</b> — the narrow channel connecting the third and fourth ventricles, running between the tectum and tegmentum of the midbrain.</p>
+      </div>
+    </div>
+    <div class="clin-box">🩺 <b>Clinical Pearl:</b> Because the cerebral aqueduct is the narrowest point in the CSF pathway, it is a common site of obstruction — producing <b>non-communicating (obstructive) hydrocephalus</b>.</div>
+  </div>
+</section>
+
+<!-- SURFACES -->
+<section class="section" id="sec-dien-surfaces">
+  <div class="page-head">
+    <div class="eyebrow">Diencephalon · Gross Anatomy</div>
+    <h1 class="page-title">The Four Surfaces</h1>
+    <p class="page-sub">The diencephalon has four surfaces: inferior, superior, lateral, and medial.</p>
+  </div>
+
+  <div class="card">
+    <h2>⬇️ Inferior Surface</h2>
+    <p>Formed, from anterior to posterior, by:</p>
+    <ul>
+      <li><b>Optic chiasma</b> — the most anterior part; formed by decussation of fibers between the two optic tracts.</li>
+      <li><b>Optic tracts</b> — the two tracts emerging from the chiasma, running posteriorly.</li>
+      <li><b>Infundibulum (pituitary stalk)</b>, topped by the <b>tuber cinereum</b>.</li>
+      <li><b>Mammillary bodies</b> — two rounded structures, most posterior.</li>
+      <li><b>Hypothalamus</b> itself — the small area between the tuber cinereum and mammillary bodies, separated from the thalamus by the <b>hypothalamic sulcus</b>.</li>
+    </ul>
+    <figure class="img-wrap">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Blausen_0536_HypothalamusLocation.png" alt="Location of the hypothalamus, optic chiasm, and pituitary stalk" onerror="this.closest('figure').style.display='none'">
+      <figcaption>The hypothalamus, optic chiasma, and infundibulum forming part of the inferior surface. Source: Blausen Medical, Wikimedia Commons (CC BY 3.0).</figcaption>
+    </figure>
+  </div>
+
+  <div class="card">
+    <h2>⬆️ Superior Surface (Roof of the Third Ventricle)</h2>
+    <p>Formed by the <b>roof of the third ventricle</b>, consisting of three layers:</p>
+    <ol>
+      <li><b>Ependyma</b> — a single layer of cuboidal or columnar ciliated cells; also lines the lateral ventricles and central canal of the spinal cord. Function: <b>secretion of CSF</b>.</li>
+      <li><b>Pia mater fold (tela choroidea)</b> — covers the ependyma superiorly.</li>
+      <li><b>Choroid plexuses</b> — blood capillaries carried within the tela choroidea.</li>
+    </ol>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h2>↔️ Lateral Surface</h2>
+      <p>Bounded by the <b>internal capsule</b> — a band of white matter (axons travelling to and from higher centers) that separates the thalamus from the lentiform nucleus of the basal ganglia.</p>
+      <div class="clin-box">🩺 Deep lacunar infarcts in the internal capsule can cause severe contralateral motor or sensory loss, because it is a compact bottleneck for corticospinal and thalamocortical fibers.</div>
+    </div>
+    <div class="card">
+      <h2>🔺 Medial Surface</h2>
+      <p>This is the <b>lateral wall of the third ventricle</b>, formed:</p>
+      <ul>
+        <li><b>Superiorly</b> by the medial surface of the <b>thalamus</b></li>
+        <li><b>Inferiorly</b> by the <b>hypothalamus</b></li>
+      </ul>
+      <p>The two are separated by the <b>hypothalamic sulcus</b>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- THALAMUS -->
+<section class="section" id="sec-thalamus">
+  <div class="page-head">
+    <div class="eyebrow">Diencephalon · Part 1 of 4</div>
+    <h1 class="page-title">Thalamus <span class="badge hy3">⭐⭐⭐ Must Know</span></h1>
+    <p class="page-sub">The largest and most important part of the diencephalon.</p>
+  </div>
+
+  <div class="card">
+    <h2>🥚 Overview</h2>
+    <p>The thalamus is a <b>large, ovoid (egg-shaped) mass of gray matter</b> that forms the major part of the diencephalon. It serves as the <b>relay station for all main sensory systems, except the olfactory pathway</b>.</p>
+    <p>It is a paired structure — <b>two thalami</b>, one on each side of the third ventricle, one in each cerebral hemisphere.</p>
+    <figure class="img-wrap">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Thalamus-schematic.svg" alt="Schematic diagram of the thalamus and its nuclei" onerror="this.closest('figure').style.display='none'">
+      <figcaption>Schematic of the thalamus showing its major nuclear groups. Source: Madhero88, Wikimedia Commons (CC BY-SA 3.0).</figcaption>
+    </figure>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>Ends</h3>
+      <div class="struct-card"><b>Anterior end</b> — narrow and rounded.</div>
+      <div class="struct-card" style="margin-top:8px;"><b>Posterior end</b> — expanded, forming the <b>pulvinar</b>. On the under-surface of the pulvinar sit two rounded elevations: the <b>lateral geniculate body</b> (laterally) and <b>medial geniculate body</b> (medially).</div>
+    </div>
+    <div class="card">
+      <h3>Surfaces</h3>
+      <ul>
+        <li><b>Superior surface</b> — covered medially by the tela choroidea + fornix; laterally by ependyma; the lateral part is partly hidden by the choroid plexus of the <i>lateral</i> ventricle.</li>
+        <li><b>Inferior surface</b> — continuous with the <b>tegmentum of the midbrain</b>.</li>
+        <li><b>Medial surface</b> — forms the superior part of the lateral wall of the third ventricle; connected to the opposite thalamus by the <b>interthalamic connection/adhesion</b>.</li>
+        <li><b>Lateral surface</b> — separated from the <b>lentiform nucleus</b> by the internal capsule.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="pearl-box">⭐⭐⭐ <b>High Yield:</b> The thalamus is the sensory relay station for <b>all</b> ascending sensory pathways <b>except olfaction</b> — the olfactory pathway bypasses the thalamus.</div>
+  </div>
+</section>
+
+<!-- SUBTHALAMUS -->
+<section class="section" id="sec-subthalamus">
+  <div class="page-head">
+    <div class="eyebrow">Diencephalon · Part 2 of 4</div>
+    <h1 class="page-title">Subthalamus</h1>
+  </div>
+  <div class="card">
+    <h2>⬇️ Location</h2>
+    <p>Lies <b>inferior to the thalamus</b> and is situated <b>between the thalamus and the tegmentum of the midbrain</b> — and posterior to the hypothalamus.</p>
+    <figure class="img-wrap">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Basal_ganglia_diagram.svg" alt="Basal ganglia and thalamic connectivity diagram" onerror="this.closest('figure').style.display='none'">
+      <figcaption>Circuit diagram showing the subthalamic nucleus (STN) within basal ganglia–thalamus connections. Source: Wikimedia Commons (public domain).</figcaption>
+    </figure>
+    <h2>🧩 Contents</h2>
+    <ul>
+      <li>Cranial ends of the <b>red nuclei</b></li>
+      <li><b>Substantia nigra</b> (cranial extensions)</li>
+      <li><b>Subthalamic nucleus</b></li>
+    </ul>
+    <p>The subthalamus also contains important <b>tracts ascending from the tegmentum of the midbrain to the thalamic nuclei</b>.</p>
+    <div class="pearl-box">⭐⭐ High Yield: the subthalamic nucleus is a key basal-ganglia relay — its dysfunction is classically linked to <b>hemiballismus</b>.</div>
+  </div>
+</section>
+
+<!-- EPITHALAMUS -->
+<section class="section" id="sec-epithalamus">
+  <div class="page-head">
+    <div class="eyebrow">Diencephalon · Part 3 of 4</div>
+    <h1 class="page-title">Epithalamus & Pineal Gland <span class="badge hy2">⭐⭐ High Yield</span></h1>
+  </div>
+
+  <div class="card">
+    <h2>🌲 Habenular Nuclei</h2>
+    <p>The epithalamus consists of the <b>habenular nuclei and their connections</b>, plus the <b>pineal gland (pineal body)</b>. The habenular nuclei sit <b>medial to the posterior surface of the thalamus</b>.</p>
+    <h3>Connections</h3>
+    <div class="grid2">
+      <div class="struct-card">
+        <b>Afferent (incoming) fibers</b>
+        <ul>
+          <li>From the <b>amygdaloid nucleus/body</b></li>
+          <li>From the <b>hippocampal formation</b></li>
+          <li>Crossing fibers from the <b>habenular nucleus of the opposite side</b>, via the <b>habenular commissure</b></li>
+        </ul>
+      </div>
+      <div class="struct-card">
+        <b>Efferent (outgoing) fibers</b>
+        <ul>
+          <li>Pass to the <b>interpeduncular nucleus</b> in the caudal tegmentum of the midbrain (near the interpeduncular fossa, between the crura cerebri)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pearl-box">⭐⭐ The habenular nuclei are believed to be a center for <b>integration of olfactory, visceral, and somatic afferent pathways</b>.</div>
+  </div>
+
+  <div class="card">
+    <h2>🌰 Pineal Gland (Pineal Body)</h2>
+    <p>A small, <b>cone-shaped structure</b> attached to the diencephalon by the <b>pineal stalk</b>, lying <b>posterior to the midbrain</b> — behind the superior and inferior colliculi (tectum).</p>
+    <ul>
+      <li>The base of the pineal stalk has a <b>recess</b> continuous with the third-ventricle cavity.</li>
+      <li>The <b>superior</b> part of the stalk base contains the <b>habenular commissure</b>; the <b>inferior</b> part contains the <b>posterior commissure</b>.</li>
+      <li>Two cell types: <b>pinealocytes</b> (secrete melatonin) and supporting <b>glial cells</b>.</li>
+    </ul>
+    <figure class="img-wrap">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Diagram%20showing%20the%20position%20of%20the%20pineal%20gland%20in%20the%20brain%20CRUK%20416.svg" alt="Position of the pineal gland in the brain" onerror="this.closest('figure').style.display='none'">
+      <figcaption>Midline position of the pineal gland, posterior to the third ventricle and above the midbrain tectum. Source: Cancer Research UK, Wikimedia Commons (CC BY-SA 4.0).</figcaption>
+    </figure>
+    <h3>Endocrine Function</h3>
+    <p>The pineal gland influences the activity of the pituitary gland and other endocrine organs — <b>islets of Langerhans, parathyroids, adrenal cortex and medulla, testes, and ovaries</b> — either:</p>
+    <ul>
+      <li><b>Directly</b>, or</li>
+      <li><b>Indirectly</b>, by <b>inhibiting secretion of releasing factors from the hypothalamus</b> (which normally drive the pituitary).</li>
+    </ul>
+    <div class="clin-box">🩺 <b>Clinical Pearl:</b> Because pineal secretion (melatonin) modulates the hypothalamic-pituitary axis, lesions of the pineal region can disrupt downstream thyroid, adrenal, and gonadal function.</div>
+  </div>
+</section>
+
+<!-- HYPOTHALAMUS -->
+<section class="section" id="sec-hypothalamus">
+  <div class="page-head">
+    <div class="eyebrow">Diencephalon · Part 4 of 4</div>
+    <h1 class="page-title">Hypothalamus</h1>
+  </div>
+  <div class="card">
+    <h2>📏 Extent & Boundaries</h2>
+    <p>The hypothalamus extends from the region of the <b>optic chiasma</b> to the <b>caudal border of the mammillary bodies</b>. It lies <b>below the thalamus</b>, separated from it by the hypothalamic sulcus.</p>
+    <ul>
+      <li>It forms the <b>lower lateral wall and floor</b> of the third ventricle.</li>
+      <li><b>Anteriorly</b>: an area extending forward from the optic chiasma to the <b>lamina terminalis</b> and <b>anterior commissure</b>.</li>
+      <li><b>Inferiorly</b> (anterior → posterior): <b>optic chiasma → tuber cinereum → infundibulum → mammillary bodies</b>.</li>
+    </ul>
+    <figure class="img-wrap">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Hypothalamus.svg" alt="Simple diagram locating the hypothalamus" onerror="this.closest('figure').style.display='none'">
+      <figcaption>Simplified location diagram of the hypothalamus relative to surrounding structures. Source: Wikimedia Commons (CC BY-SA 4.0).</figcaption>
+    </figure>
+    <div class="pearl-box">⭐⭐ The hypothalamus integrates sensations from body surfaces and body cavities, and also serves as a center for olfactory integration.</div>
+  </div>
+</section>
+
+<!-- DIENCEPHALON PEARLS -->
+<section class="section" id="sec-dien-pearls">
+  <div class="page-head">
+    <div class="eyebrow">Diencephalon · Revision</div>
+    <h1 class="page-title">High-Yield Exam Pearls & Clinical Pearls</h1>
+  </div>
+  <div class="card">
+    <h2>🚨 High-Yield Exam Pearls</h2>
+    <div class="pearl-box">The diencephalon (thalamus, hypothalamus, epithalamus, subthalamus) is a central midline structure comprising the structures bounding the third ventricle.</div>
+    <div class="pearl-box">The thalamus is the major relay station for all main sensory systems, excluding the olfactory pathway.</div>
+    <div class="pearl-box">The pineal gland indirectly influences the pituitary gland and other major endocrine organs (islets of Langerhans, parathyroids, adrenal cortex, gonads) by inhibiting hypothalamic releasing-factor secretion.</div>
+    <div class="pearl-box">The epithalamus contains the habenular nuclei — integration centers for olfactory, visceral, and somatic afferent pathways.</div>
+    <div class="pearl-box">The anterior boundary of the hypothalamus extends to the lamina terminalis and anterior commissure; its inferior boundary relates to the optic chiasma, tuber cinereum, infundibulum, and mammillary bodies.</div>
+    <div class="pearl-box">The subthalamus contains the cranial ends of the red nuclei and the substantia nigra, lying between the thalamus above and the midbrain tegmentum below.</div>
+  </div>
+  <div class="card">
+    <h2>🩺 Clinical Pearls</h2>
+    <div class="clin-box">Pineal-region lesions disrupting melatonin secretion can alter hypothalamic-pituitary axis regulation — affecting thyroid, adrenal, and gonadal function.</div>
+    <div class="clin-box">Because the internal capsule bounds the thalamus laterally (separating it from the lentiform nucleus), deep lacunar infarcts here can cause severe contralateral motor or sensory loss.</div>
+    <div class="clin-box">The cerebral aqueduct — the narrow passage linking the third and fourth ventricles through the midbrain — is a common site of obstruction, producing non-communicating hydrocephalus.</div>
+  </div>
+</section>
+
+<!-- DISEASES -->
+<section class="section" id="sec-diseases">
+  <div class="page-head">
+    <div class="eyebrow">History & Examination · Dr Hashim ELTom</div>
+    <h1 class="page-title">1 · Major Diseases of the Nervous System</h1>
+    <p class="page-sub">A framework for the differential diagnosis of any neurological presentation, organized by pathological category.</p>
+  </div>
+  <div class="card">
+    <table class="cmp">
+      <tr><th>Category</th><th>Classic Example(s)</th></tr>
+      <tr><td>🩸 Vascular</td><td>Stroke</td></tr>
+      <tr><td>🦠 Inflammatory</td><td>Meningitis, encephalitis, tuberculosis</td></tr>
+      <tr><td>🧬 Neoplastic</td><td>Brain tumours</td></tr>
+      <tr><td>📉 Degenerative</td><td>Motor neuron disease (MND), Parkinsonism</td></tr>
+      <tr><td>💥 Traumatic</td><td>Head injury</td></tr>
+    </table>
+    <div class="pearl-box">⭐⭐⭐ Memory aid — <b>"VINDT"</b>: Vascular · Inflammatory · Neoplastic · Degenerative · Traumatic. Use this list as your first differential-diagnosis scaffold for any neurological complaint.</div>
+    <div class="grid2">
+      <figure class="img-wrap">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Ischemic_Stroke.svg" alt="Diagram of ischemic stroke in the brain" onerror="this.closest('figure').style.display='none'">
+        <figcaption><b>Vascular:</b> ischemic stroke — occlusion of a cerebral artery cutting off blood supply. Source: Wikimedia Commons (CC BY-SA 3.0).</figcaption>
+      </figure>
+      <figure class="img-wrap">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Symptoms_of_Meningitis.svg" alt="Diagram of meningitis symptoms" onerror="this.closest('figure').style.display='none'">
+        <figcaption><b>Inflammatory:</b> classic symptoms of meningitis. Source: Mikael Häggström, Wikimedia Commons (public domain).</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- SYMPTOMS -->
+<section class="section" id="sec-symptoms">
+  <div class="page-head">
+    <div class="eyebrow">History & Examination · Dr Hashim ELTom</div>
+    <h1 class="page-title">2 · Symptoms & History-Taking</h1>
+  </div>
+
+  <div class="card">
+    <h2>🧭 General Points to Cover</h2>
+    <ul>
+      <li>History of trauma</li>
+      <li>Headache, disturbance of consciousness, and convulsions</li>
+      <li>Symptoms of cranial nerve disturbance</li>
+      <li>Symptoms relevant to the limbs — both positive and negative</li>
+      <li>Sphincter disturbance</li>
+      <li>Impact of the problem on the patient's life</li>
+      <li>Socio-economic background</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>⏱️ The Onset — a High-Yield Timing Framework <span class="badge hy3">⭐⭐⭐ Must Know</span></h2>
+    <table class="cmp">
+      <tr><th>Onset</th><th>Typical causes</th></tr>
+      <tr><td><b>Acute</b></td><td>Stroke, trauma, transverse myelitis</td></tr>
+      <tr><td><b>Subacute</b></td><td>(Acute) inflammation, multiple sclerosis</td></tr>
+      <tr><td><b>Chronic</b></td><td>Neoplasia, chronic inflammation</td></tr>
+      <tr><td><b>Very chronic</b></td><td>Degenerative diseases — MND, Parkinsonism</td></tr>
+    </table>
+    <p>Always ask: <i>when was the maximum neurological deficit reached?</i> and <i>thereafter, did the patient improve, remain static, or deteriorate?</i></p>
+  </div>
+
+  <div class="card">
+    <h2>💥 History of Trauma</h2>
+    <p>Even <b>minor trauma</b> can have neurological consequences — and patients/families often forget or dismiss these minor events. Always ask specifically about trauma in the history.</p>
+  </div>
+
+  <div class="card">
+    <h2>🤕 Headache, Coma & Convulsions</h2>
+    <figure class="img-wrap">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Large_headache_diagram.png" alt="Diagram illustrating headache" onerror="this.closest('figure').style.display='none'">
+      <figcaption>Headache is one of the most common presenting complaints in neurology — the pattern of onset and site is a key diagnostic clue. Source: Wikimedia Commons.</figcaption>
+    </figure>
+    <h3>Chronic Headache — Primary causes</h3>
+    <table class="cmp">
+      <tr><th>Type</th><th>Character</th></tr>
+      <tr><td>Migraine</td><td>Moderate–severe, unilateral, retro-orbital</td></tr>
+      <tr><td>Cluster headache</td><td>Severe, unilateral, with lacrimation and nasal congestion</td></tr>
+      <tr><td>Tension headache</td><td>Mild–moderate, vertex, continuous, does not disturb daily life</td></tr>
+    </table>
+    <h3>Chronic Headache — Secondary causes</h3>
+    <ul>
+      <li><b>Intracranial hypertension:</b> mild–moderate, early-morning headache that fades during the day, worsened by coughing/straining.</li>
+      <li><b>Acute severe headache:</b> think <b>subarachnoid hemorrhage</b> ("thunderclap" pattern).</li>
+    </ul>
+    <h3>Loss of Consciousness</h3>
+    <p>Causes: <b>vascular</b> (stroke), <b>inflammatory</b> (encephalitis), <b>traumatic</b> (head injury), <b>metabolic</b> (diabetic coma).</p>
+    <h3>Convulsions — True vs Psychogenic <span class="badge hy2">⭐⭐ High Yield</span></h3>
+    <table class="cmp">
+      <tr><th>Feature</th><th>True (epileptic) convulsion</th><th>Psychogenic fit</th></tr>
+      <tr><td>Trauma during event</td><td>Present</td><td>Absent / no serious trauma</td></tr>
+      <tr><td>Tongue biting</td><td>Present</td><td>Absent</td></tr>
+      <tr><td>Frothy sputum</td><td>Present</td><td>Absent</td></tr>
+      <tr><td>Occurs during sleep</td><td>Can occur</td><td>Does not occur</td></tr>
+      <tr><td>Psychological gain</td><td>Absent</td><td>Present</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>👂👁️ Cranial Nerve Symptoms</h2>
+    <ul>
+      <li><b>Hearing:</b> diminished hearing, tinnitus, vertigo</li>
+      <li><b>Vision:</b> diminished vision, double vision (diplopia)</li>
+    </ul>
+    <h3>Disturbance of Speech — Dysarthria types <span class="badge hy2">⭐⭐ High Yield</span></h3>
+    <table class="cmp">
+      <tr><th>Type</th><th>Cause</th></tr>
+      <tr><td><b>Fluent dysarthria</b></td><td>Disturbance of the <b>receptive speech area</b></td></tr>
+      <tr><td><b>Non-fluent dysarthria</b></td><td>Disturbance of the <b>motor cortex</b>, or peripheral nerve disease + muscle/neuromuscular problems + local oral-cavity problems</td></tr>
+    </table>
+    <h3>Difficulty Swallowing (Dysphagia) — a classic three-way split</h3>
+    <table class="cmp">
+      <tr><th>Type</th><th>Character</th></tr>
+      <tr><td><b>Medical</b></td><td>Painful, to solids</td></tr>
+      <tr><td><b>Surgical</b></td><td>Painless, to solids</td></tr>
+      <tr><td><b>Neurological</b></td><td>To fluids, with nasal regurgitation</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>🦵 Symptoms of the Limbs</h2>
+    <h3>Weakness</h3>
+    <table class="cmp">
+      <tr><th>Pattern</th><th>Functional difficulty</th></tr>
+      <tr><td><b>Proximal weakness</b></td><td>Combing hair, raising arms above the head, standing from sitting, climbing stairs</td></tr>
+      <tr><td><b>Distal weakness</b></td><td>Writing, buttoning</td></tr>
+    </table>
+    <h3>Numbness</h3>
+    <p>Abnormal sensation of the upper and lower limbs.</p>
+    <div class="pearl-box">⭐⭐⭐ In <b>length-dependent neuropathy</b>, the upper limbs are <b>never</b> affected before or simultaneously with the lower limbs. Pain is an <b>early</b> symptom in peripheral neuropathy.</div>
+    <p>Also ask about <b>sphincter disturbance</b> (bladder/bowel).</p>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h2>🌍 Impact on Life</h2>
+      <p>Assess three normal abilities:</p>
+      <ul>
+        <li><b>Enjoyment of life</b></li>
+        <li><b>Function</b> — job or role in life</li>
+        <li><b>Self-care</b> — eating, drinking, brushing, combing, cleaning, dressing</li>
+      </ul>
+      <div class="pearl-box">Self-care is the <b>most important</b> domain to assess after an acute neurological problem.</div>
+    </div>
+    <div class="card">
+      <h2>🏠 Social Background</h2>
+      <p>Neurological disease usually leaves some physical disability, so it is essential to establish whether the patient has <b>support available at home</b>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EXAM -->
+<section class="section" id="sec-exam">
+  <div class="page-head">
+    <div class="eyebrow">History & Examination · Dr Hashim ELTom</div>
+    <h1 class="page-title">3 · Neurological Examination</h1>
+  </div>
+
+  <div class="card">
+    <h2>🗂️ Structure of the Examination</h2>
+    <div class="grid2">
+      <div class="struct-card"><b>Mental status</b><br>Consciousness · Orientation · Memory · Thinking · Speech</div>
+      <div class="struct-card"><b>The limbs</b><br>Inspection · Tone · Power · Reflexes · Sensation · Co-ordination</div>
+    </div>
+    <figure class="img-wrap">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Eye_dilate.gif" alt="Pupillary light reflex animation" onerror="this.closest('figure').style.display='none'">
+      <figcaption>The pupillary light reflex — an essential check when assessing consciousness and brainstem function. Source: G. Orlando, Wikimedia Commons (public domain).</figcaption>
+    </figure>
+  </div>
+
+  <div class="card">
+    <h2>🧠 Mental Status Examination</h2>
+    <ul>
+      <li><b>Consciousness:</b> is the patient conscious or not?</li>
+      <li><b>Orientation:</b> in time, place, and person.</li>
+      <li><b>Memory:</b>
+        <ul>
+          <li><b>Remote</b> — personal data / important life events</li>
+          <li><b>Recent</b> — ask about an event from 4–5 minutes ago</li>
+        </ul>
+      </li>
+      <li><b>Thinking:</b> serial subtraction — count down by sevens from 100 (100, 93, 86…), adjusted to the patient's education level. Alternative: give a local saying/proverb and ask the patient to explain its meaning.</li>
+      <li><b>Speech:</b>
+        <ul>
+          <li><b>Volume</b> — depends on normal respiratory muscles and vocal cords.</li>
+          <li><b>Articulation</b> — depends on the speech motor cortex, tongue, lips, buccal and oro-pharyngeal muscles.</li>
+          <li><b>Comprehension</b> — function of the speech receptive (sensory) cortex.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🦵 Examination of the Limbs</h2>
+    <h3>Inspection</h3>
+    <p>Look for: <b>posture</b>, <b>abnormal movement</b>, <b>fasciculation</b>, and <b>muscle atrophy</b>.</p>
+    <table class="cmp">
+      <tr><th>Finding</th><th>Description</th></tr>
+      <tr><td><b>Tremor</b></td><td>Rhythmic, regular, equal-amplitude abnormal movement</td></tr>
+      <tr><td><b>Fasciculation</b></td><td>Visible contractions of giant motor units (classically around the shoulder)</td></tr>
+      <tr><td><b>Atrophy</b></td><td>Especially of the small muscles of the hand</td></tr>
+    </table>
+    <h3>Palpation</h3>
+    <p>Of limited value — used for muscle tenderness (e.g. acute myositis) and assessing muscle bulk for atrophy.</p>
+
+    <figure class="img-wrap">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Reflex_hammer.jpg" alt="Reflex hammer used in neurological examination" onerror="this.closest('figure').style.display='none'">
+      <figcaption>A reflex hammer — the core instrument for testing tone-related deep tendon reflexes during the limb examination. Source: Wikimedia Commons.</figcaption>
+    </figure>
+    <h3>Tone <span class="badge hy2">⭐⭐ High Yield</span></h3>
+    <div class="pearl-box"><b>Definition:</b> Tone is the resistance encountered when a muscle is passively stretched. Physiologically due to random contraction of motor units, driven by random firing of gamma motor neurons.</div>
+    <ul>
+      <li>Best revealed at a joint with a <b>long range of mobility</b>.</li>
+      <li>Repeat the maneuver <b>twice at each joint</b>.</li>
+      <li><b>Start distal, move proximal.</b></li>
+      <li>Make a <b>full-range</b> movement, performed <b>relatively quickly</b>.</li>
+      <li><b>Distract the patient</b> (e.g. move the other limb up and down).</li>
+      <li>Know the causes/types of <b>hypertonia</b> and <b>hypotonia</b>.</li>
+    </ul>
+
+    <h3>Power <span class="badge hy2">⭐⭐ High Yield</span></h3>
+    <ul>
+      <li>Graded from <b>0 to 5</b> (MRC scale).</li>
+      <li><b>&lt; Grade 3 = paralysis</b> — individual muscle groups are not separately tested.</li>
+      <li><b>&gt; Grade 3 = paresis</b> — individual muscle groups are examined.</li>
+      <li><b>Start distal, move proximal.</b></li>
+      <li><b>Mechanical advantage should favor the examiner.</b></li>
+      <li><b>Isolate the joint</b> so the test is limited to one muscle group (never test across two joints at once).</li>
+    </ul>
+  </div>
+</section>
+
+<!-- FLASHCARDS -->
+<section class="section" id="sec-flashcards">
+  <div class="page-head">
+    <div class="eyebrow">Rapid Revision</div>
+    <h1 class="page-title">🎴 Flashcards</h1>
+    <p class="page-sub">Click any card to flip it.</p>
+  </div>
+  <div class="fc-grid" id="fc-grid"></div>
+</section>
+
+<!-- MCQS -->
+<section class="section" id="sec-mcqs">
+  <div class="page-head">
+    <div class="eyebrow">High-Yield Exam Zone</div>
+    <h1 class="page-title">🎯 MCQs</h1>
+    <p class="page-sub">Select an answer to reveal the explanation.</p>
+  </div>
+  <div id="mcq-list"></div>
+</section>
+
+<!-- GLOSSARY -->
+<section class="section" id="sec-glossary">
+  <div class="page-head">
+    <div class="eyebrow">Reference</div>
+    <h1 class="page-title">📖 Glossary — Difficult Vocabulary</h1>
+  </div>
+  <div class="card" id="glossary-card"></div>
+</section>
+
+<div class="footer-credit">Crafted by Orca · Neuroscience CNS Series · Batch 44</div>
+</main>
+
+<script>
+/* ---------- NAVIGATION ---------- */
+const navItems = document.querySelectorAll('.nav-item');
+const sections = document.querySelectorAll('.section');
+
+function showSection(id){
+  sections.forEach(s=>s.classList.remove('active'));
+  const target = document.getElementById('sec-'+id);
+  if(target) target.classList.add('active');
+  navItems.forEach(n=>n.classList.toggle('active', n.dataset.target===id));
+  markVisited(id);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+navItems.forEach(item=>{
+  item.addEventListener('click', ()=> showSection(item.dataset.target));
+});
+
+/* ---------- PROGRESS TRACKING ---------- */
+const allIds = Array.from(navItems).map(n=>n.dataset.target);
+function getVisited(){
+  try{ return JSON.parse(localStorage.getItem('dien_visited')||'{}'); }catch(e){ return {}; }
+}
+function markVisited(id){
+  const v = getVisited();
+  v[id]=true;
+  localStorage.setItem('dien_visited', JSON.stringify(v));
+  updateProgressUI();
+}
+function updateProgressUI(){
+  const v = getVisited();
+  const done = allIds.filter(id=>v[id]).length;
+  const pct = Math.round((done/allIds.length)*100);
+  document.getElementById('progress-fill').style.width = pct+'%';
+  document.getElementById('progress-pct').textContent = pct+'%';
+  document.querySelectorAll('.chk').forEach(c=>{
+    c.classList.toggle('done', !!v[c.dataset.id]);
+    c.textContent = v[c.dataset.id] ? '✓' : '';
+  });
+}
+updateProgressUI();
+showSection('overview');
+
+/* ---------- SEARCH ---------- */
+document.getElementById('search-box').addEventListener('input', function(){
+  const q = this.value.trim().toLowerCase();
+  navItems.forEach(item=>{
+    const text = item.textContent.toLowerCase();
+    item.style.display = (q==='' || text.includes(q)) ? 'flex' : 'none';
+  });
+});
+
+/* ---------- FLASHCARDS ---------- */
+const flashcards = [
+  {f:"What forms the boundaries of the third ventricle?", b:"The thalamus and hypothalamus — forming its lateral wall and floor."},
+  {f:"Anterior extension of the diencephalon?", b:"To the interventricular foramina."},
+  {f:"Posterior extension of the diencephalon?", b:"To where the third ventricle becomes continuous with the cerebral aqueduct."},
+  {f:"Name the four surfaces of the diencephalon.", b:"Inferior, superior, lateral, and medial."},
+  {f:"What structures form the inferior surface of the diencephalon?", b:"Optic chiasma, optic tracts, infundibulum, tuber cinereum, mammillary bodies, and the hypothalamus."},
+  {f:"What three layers form the superior surface (roof of the 3rd ventricle)?", b:"Ependyma, pia mater (tela choroidea), and choroid plexuses."},
+  {f:"What bounds the diencephalon laterally?", b:"The internal capsule."},
+  {f:"The thalamus relays all sensory modalities except...?", b:"Olfaction (smell)."},
+  {f:"What forms the expanded posterior end of the thalamus?", b:"The pulvinar."},
+  {f:"What connects the two thalami across the third ventricle?", b:"The interthalamic connection (adhesion)."},
+  {f:"Where is the subthalamus located?", b:"Between the thalamus (above) and the tegmentum of the midbrain (below)."},
+  {f:"Name the three main components of the subthalamus.", b:"Cranial ends of the red nuclei, substantia nigra, and the subthalamic nucleus."},
+  {f:"What two structures make up the epithalamus?", b:"The habenular nuclei and the pineal gland."},
+  {f:"How does the pineal gland influence endocrine organs?", b:"Directly, or indirectly by inhibiting hypothalamic releasing-factor secretion."},
+  {f:"What hormone do pinealocytes secrete?", b:"Melatonin."},
+  {f:"From where to where does the hypothalamus extend?", b:"From the optic chiasma to the caudal border of the mammillary bodies."},
+  {f:"VINDT — what does it stand for?", b:"Vascular, Inflammatory, Neoplastic, Degenerative, Traumatic — major disease categories of the nervous system."},
+  {f:"Acute onset of a neurological deficit suggests?", b:"Stroke, trauma, or transverse myelitis."},
+  {f:"Very chronic onset suggests?", b:"Degenerative disease — e.g. MND, Parkinsonism."},
+  {f:"Distinguish fluent vs non-fluent dysarthria.", b:"Fluent = receptive speech area disturbance; Non-fluent = motor cortex or peripheral/muscular disturbance."},
+  {f:"Neurological dysphagia is typically to fluids or solids?", b:"To fluids, often with nasal regurgitation."},
+  {f:"Proximal limb weakness impairs which activities?", b:"Combing hair, raising arms overhead, standing from sitting, climbing stairs."},
+  {f:"Key rule in length-dependent neuropathy?", b:"Upper limbs are never affected before or simultaneously with lower limbs."},
+  {f:"Definition of tone?", b:"The resistance encountered when a muscle is passively stretched."},
+  {f:"MRC power grade cutoff between paralysis and paresis?", b:"Below grade 3 = paralysis; above grade 3 = paresis."},
+];
+const fcGrid = document.getElementById('fc-grid');
+flashcards.forEach(c=>{
+  const div = document.createElement('div');
+  div.className='fc';
+  div.innerHTML = `<div class="fc-inner">
+      <div class="fc-face fc-front">${c.f}</div>
+      <div class="fc-face fc-back">${c.b}</div>
+    </div>`;
+  div.addEventListener('click', ()=>div.classList.toggle('flipped'));
+  fcGrid.appendChild(div);
+});
+
+/* ---------- MCQs ---------- */
+const mcqs = [
+  {q:"The diencephalon consists of the third ventricle and the structures forming its boundaries, namely:", opts:["Thalamus and hypothalamus","Thalamus and midbrain","Hypothalamus and cerebellum","Epithalamus and cerebrum"], correct:0, exp:"The thalamus and hypothalamus form the lateral wall and floor of the third ventricle."},
+  {q:"Anteriorly, the diencephalon extends as far as the:", opts:["Cerebral aqueduct","Interventricular foramina","Lamina terminalis only","Fourth ventricle"], correct:1, exp:"The interventricular foramina connect the lateral ventricles to the third ventricle and mark the anterior limit."},
+  {q:"Which structure is NOT part of the inferior surface of the diencephalon?", opts:["Optic chiasma","Mammillary bodies","Internal capsule","Tuber cinereum"], correct:2, exp:"The internal capsule bounds the diencephalon laterally, not inferiorly."},
+  {q:"The thalamus serves as a relay station for all sensory systems except:", opts:["Vision","Hearing","Olfaction","Touch"], correct:2, exp:"The olfactory pathway is the only sensory system that does not relay through the thalamus."},
+  {q:"The expanded posterior end of the thalamus is called the:", opts:["Pulvinar","Tuber cinereum","Infundibulum","Interthalamic adhesion"], correct:0, exp:"The pulvinar is the enlarged posterior end of the thalamus."},
+  {q:"The subthalamus lies between the thalamus and the:", opts:["Cerebellum","Tegmentum of the midbrain","Fourth ventricle","Corpus callosum"], correct:1, exp:"The subthalamus is sandwiched between the thalamus above and the midbrain tegmentum below."},
+  {q:"The epithalamus is composed of the habenular nuclei and the:", opts:["Pituitary gland","Pineal gland","Amygdala","Hippocampus"], correct:1, exp:"The epithalamus = habenular nuclei + pineal gland."},
+  {q:"The pineal gland influences the pituitary indirectly by:", opts:["Secreting ADH","Inhibiting hypothalamic releasing factors","Direct neural synapse on pituicytes","Blocking the optic chiasma"], correct:1, exp:"Melatonin from the pineal gland inhibits hypothalamic releasing-factor secretion, an indirect route to affecting pituitary output."},
+  {q:"The hypothalamus extends from the optic chiasma to the:", opts:["Pulvinar","Caudal border of the mammillary bodies","Habenular commissure","Cerebral aqueduct"], correct:1, exp:"This is the classic anterior-to-posterior extent of the hypothalamus."},
+  {q:"A patient has severe, unilateral, retro-orbital headache. Most likely primary headache?", opts:["Tension headache","Cluster headache","Migraine","Intracranial hypertension"], correct:2, exp:"Migraine is classically moderate-severe, unilateral, and retro-orbital."},
+  {q:"Early-morning headache that fades during the day and worsens with coughing suggests:", opts:["Migraine","Tension headache","Intracranial hypertension","Cluster headache"], correct:2, exp:"This pattern is classic for raised intracranial pressure."},
+  {q:"A convulsion with tongue biting, frothy sputum, and occurring during sleep is most consistent with:", opts:["Psychogenic fit","True (epileptic) convulsion","Syncope","Tension headache"], correct:1, exp:"Tongue biting, frothy sputum, trauma, and occurrence during sleep all favor a true epileptic seizure over a psychogenic event."},
+  {q:"Fluent dysarthria results from disturbance of the:", opts:["Motor cortex","Receptive speech area","Peripheral nerve","Oral cavity"], correct:1, exp:"Fluent dysarthria (better termed receptive/fluent aphasia in clinical practice) reflects receptive speech area dysfunction."},
+  {q:"Neurological dysphagia is characteristically:", opts:["Painful, to solids","Painless, to solids","To fluids with nasal regurgitation","Only occurs at night"], correct:2, exp:"Neurological causes of dysphagia typically affect fluids first and cause nasal regurgitation."},
+  {q:"In length-dependent peripheral neuropathy:", opts:["Upper limbs are affected first","Upper and lower limbs are affected simultaneously from onset","Upper limbs are never affected before the lower limbs","Only proximal muscles are affected"], correct:2, exp:"Length-dependent neuropathy affects the longest nerves (lower limbs) first."},
+  {q:"On the MRC power scale, a grade below 3 is termed:", opts:["Paresis","Paralysis","Normal power","Hypertonia"], correct:1, exp:"Grade <3 = paralysis (individual muscle groups aren't separately tested); grade >3 = paresis."},
+  {q:"When testing tone, the examiner should:", opts:["Start proximal and move distal","Move slowly through a small range","Start distal and move proximal through a full range","Avoid distracting the patient"], correct:2, exp:"Correct technique: start distal, move proximal, use a full-range and relatively quick movement, and distract the patient."},
+];
+const mcqList = document.getElementById('mcq-list');
+mcqs.forEach((m,i)=>{
+  const div = document.createElement('div');
+  div.className='mcq';
+  let optsHtml = m.opts.map((o,oi)=>`<button class="opt" data-i="${oi}">${String.fromCharCode(65+oi)}. ${o}</button>`).join('');
+  div.innerHTML = `<div class="q">${i+1}. ${m.q}</div>${optsHtml}<div class="explain">💡 ${m.exp}</div>`;
+  div.querySelectorAll('.opt').forEach(btn=>{
+    btn.addEventListener('click', function(){
+      if(div.dataset.answered) return;
+      div.dataset.answered = "1";
+      const chosen = parseInt(this.dataset.i);
+      div.querySelectorAll('.opt').forEach(b=>{
+        const bi = parseInt(b.dataset.i);
+        if(bi===m.correct) b.classList.add('correct');
+        else if(bi===chosen) b.classList.add('wrong');
+      });
+      div.querySelector('.explain').style.display='block';
+    });
+  });
+  mcqList.appendChild(div);
+});
+
+/* ---------- GLOSSARY ---------- */
+const glossary = [
+  ["Diencephalon","Midline forebrain division consisting of the thalamus, hypothalamus, epithalamus, and subthalamus."],
+  ["Interthalamic adhesion (connection)","Band of gray matter crossing the third ventricle, connecting the two thalami."],
+  ["Pulvinar","The expanded posterior end of the thalamus."],
+  ["Tuber cinereum","A raised area of the hypothalamus between the optic chiasma/infundibulum and mammillary bodies."],
+  ["Infundibulum","The stalk connecting the hypothalamus to the pituitary gland."],
+  ["Mammillary bodies","Paired rounded structures forming the most posterior part of the inferior surface of the diencephalon."],
+  ["Ependyma","Single layer of ciliated cuboidal/columnar cells lining the ventricles and central canal; secretes CSF."],
+  ["Tela choroidea","Vascular fold of pia mater covering the ependyma, carrying the choroid plexus."],
+  ["Choroid plexus","Blood capillary network within the tela choroidea, responsible for CSF production."],
+  ["Internal capsule","Band of white matter separating the thalamus from the lentiform nucleus; bounds the diencephalon laterally."],
+  ["Habenular nuclei","Epithalamic nuclei integrating olfactory, visceral, and somatic afferent pathways."],
+  ["Habenular commissure","Crossing point of habenular fibers between the two sides, in the superior stalk base of the pineal gland."],
+  ["Interpeduncular fossa","Depression between the crura cerebri of the midbrain, containing the interpeduncular nucleus."],
+  ["Pinealocytes","Secretory cells of the pineal gland that produce melatonin."],
+  ["Lamina terminalis","Thin membrane forming the anterior boundary of the hypothalamic region / third ventricle."],
+  ["Length-dependent neuropathy","Peripheral neuropathy pattern affecting the longest nerves (lower limbs) first."],
+  ["Fasciculation","Visible spontaneous contraction of a motor unit, often seen around the shoulder in lower motor neuron disease."],
+  ["Gegenhalten","Increasing involuntary resistance to passive movement, proportional to applied force (seen in frontal lobe/dementia)."],
+  ["Dysarthria","Disturbance of the motor production of speech (as used in the lecture, contrasted as fluent vs non-fluent)."],
+  ["Jendrassik maneuver","Reinforcement technique for eliciting reflexes by having the patient pull interlocked fingers apart."],
+];
+const gcard = document.getElementById('glossary-card');
+glossary.forEach(([t,d])=>{
+  const p = document.createElement('p');
+  p.innerHTML = `<span class="gloss-term">${t}</span> — ${d}`;
+  gcard.appendChild(p);
+});
+</script>
+</body>
+</html>
