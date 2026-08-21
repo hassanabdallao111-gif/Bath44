@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neuroscience — Spinal Curvatures | Dr. Hassan Salaheldeen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-deep:#051428;
+    --navy:#0A2540;
+    --blue:#1D6FA5;
+    --blue-light:#5FA8D3;
+    --ice:#EAF3FA;
+    --paper:#F6FAFD;
+    --white:#FFFFFF;
+    --amber:#C6862B;
+    --amber-soft:#F4E3C6;
+    --red:#B23A3A;
+    --red-soft:#F6E1E1;
+    --ink:#152238;
+    --ink-soft:#4C5D74;
+    --line:#DCE6F0;
+    --shadow: 0 12px 30px -14px rgba(10,37,64,.28);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.65;
+  }
+  ::selection{background:var(--blue-light);color:#fff;}
+  h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:600;color:var(--navy);margin:0 0 .4em;}
+  .mono{font-family:'IBM Plex Mono',monospace;letter-spacing:.02em;}
+  a{color:var(--blue);}
+  img{max-width:100%;display:block;}
+  .visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
+
+  /* ===== Layout shell ===== */
+  .shell{display:grid;grid-template-columns:270px 1fr;min-height:100vh;}
+  @media (max-width:900px){.shell{grid-template-columns:1fr;}}
+
+  /* ===== Sidebar / lecture navigator ===== */
+  .sidebar{
+    background:linear-gradient(180deg,var(--navy-deep),var(--navy) 70%);
+    color:#cfe0ef;
+    position:sticky;top:0;height:100vh;overflow-y:auto;
+    padding:26px 20px 40px;
+    border-right:1px solid rgba(255,255,255,.06);
+  }
+  @media (max-width:900px){
+    .sidebar{position:relative;height:auto;padding:18px 16px;}
+  }
+  .brand{display:flex;align-items:center;gap:10px;margin-bottom:22px;}
+  .brand-mark{
+    width:38px;height:38px;border-radius:10px;
+    background:radial-gradient(circle at 30% 25%, var(--blue-light), var(--blue) 60%, var(--navy-deep));
+    display:flex;align-items:center;justify-content:center;font-size:18px;flex:none;
+    box-shadow:0 6px 16px -6px rgba(31,120,180,.7);
+  }
+  .brand-name{font-family:'Fraunces',serif;color:#fff;font-size:1.15rem;font-weight:600;line-height:1.1;}
+  .brand-sub{font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:var(--blue-light);letter-spacing:.12em;text-transform:uppercase;}
+
+  .nav-search{
+    width:100%;padding:9px 12px;border-radius:9px;border:1px solid rgba(255,255,255,.15);
+    background:rgba(255,255,255,.06);color:#fff;font-family:'Inter',sans-serif;font-size:.85rem;margin-bottom:18px;
+  }
+  .nav-search::placeholder{color:#8fa8c2;}
+
+  .navigator-label{font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-light);margin:18px 0 8px;}
+  .lecture-item{border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:12px 14px;margin-bottom:10px;background:rgba(255,255,255,.03);}
+  .lecture-title{font-size:.95rem;color:#fff;font-weight:700;margin-bottom:2px;}
+  .lecture-meta{font-size:.72rem;color:#8fa8c2;font-family:'IBM Plex Mono',monospace;}
+  .toc{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:2px;}
+  .toc a{
+    display:flex;align-items:center;gap:8px;text-decoration:none;color:#b9cde3;font-size:.85rem;
+    padding:7px 8px;border-radius:8px;transition:background .15s, color .15s, transform .15s;
+    border-left:2px solid transparent;
+  }
+  .toc a .dot{width:6px;height:6px;border-radius:50%;background:#3d5878;flex:none;transition:background .15s,box-shadow .15s;}
+  .toc a:hover{background:rgba(255,255,255,.06);color:#fff;}
+  .toc a.active{color:#fff;border-left-color:var(--blue-light);background:rgba(95,168,211,.12);}
+  .toc a.active .dot{background:var(--blue-light);box-shadow:0 0 0 4px rgba(95,168,211,.2);}
+
+  .rail-spine{margin-top:22px;padding:14px 10px;background:rgba(255,255,255,.03);border-radius:12px;border:1px solid rgba(255,255,255,.08);}
+  .rail-spine svg{width:100%;height:auto;display:block;}
+  .rail-caption{font-family:'IBM Plex Mono',monospace;font-size:.62rem;color:#8fa8c2;text-align:center;margin-top:6px;letter-spacing:.06em;}
+
+  .progress-wrap{margin-top:18px;}
+  .progress-bar{height:6px;border-radius:6px;background:rgba(255,255,255,.08);overflow:hidden;}
+  .progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--blue-light),var(--amber));transition:width .3s;}
+  .progress-label{font-family:'IBM Plex Mono',monospace;font-size:.62rem;color:#8fa8c2;margin-top:6px;}
+
+  /* ===== Main content ===== */
+  main{min-width:0;}
+  .hero{
+    position:relative;overflow:hidden;
+    background:radial-gradient(1100px 500px at 80% -10%, rgba(95,168,211,.35), transparent 60%), linear-gradient(160deg,var(--navy-deep) 0%,var(--navy) 55%,#0d3a63 100%);
+    color:#fff;padding:64px 48px 56px;
+  }
+  @media (max-width:700px){.hero{padding:44px 22px 40px;}}
+  .kicker{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-light);margin-bottom:14px;display:inline-flex;align-items:center;gap:8px;}
+  .kicker::before{content:"";width:22px;height:1px;background:var(--blue-light);}
+  .hero h1{color:#fff;font-size:clamp(1.9rem,4vw,3rem);max-width:18ch;margin-bottom:14px;}
+  .hero p.lede{max-width:58ch;color:#c9dbec;font-size:1.05rem;}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;}
+  .pill{
+    font-family:'IBM Plex Mono',monospace;font-size:.72rem;padding:7px 13px;border-radius:999px;
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#dce9f5;
+  }
+
+  section{padding:52px 48px;border-bottom:1px solid var(--line);}
+  @media (max-width:700px){section{padding:34px 20px;}}
+  .section-head{max-width:74ch;margin-bottom:28px;}
+  .section-num{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;}
+  .section-head h2{font-size:clamp(1.4rem,2.6vw,2rem);}
+  .section-head p{color:var(--ink-soft);max-width:64ch;}
+
+  /* cards / grids */
+  .grid{display:grid;gap:18px;}
+  .grid-2{grid-template-columns:repeat(2,1fr);}
+  .grid-3{grid-template-columns:repeat(3,1fr);}
+  .grid-4{grid-template-columns:repeat(4,1fr);}
+  @media (max-width:900px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}}
+
+  .card{
+    background:var(--white);border:1px solid var(--line);border-radius:14px;padding:20px 22px;
+    box-shadow:var(--shadow);
+  }
+  .card h3{font-size:1.05rem;margin-bottom:8px;}
+  .card p{color:var(--ink-soft);font-size:.94rem;margin:0;}
+  .card .icon{font-size:1.4rem;margin-bottom:10px;display:block;}
+
+  .badge{
+    display:inline-flex;align-items:center;gap:5px;font-family:'IBM Plex Mono',monospace;font-size:.68rem;
+    padding:3px 9px;border-radius:999px;font-weight:600;letter-spacing:.03em;
+  }
+  .badge.hy1{background:var(--amber-soft);color:#8a5c15;}
+  .badge.hy2{background:#f6d9a6;color:#7a4d0a;}
+  .badge.hy3{background:var(--amber);color:#fff;}
+  .badge.clin{background:var(--red-soft);color:var(--red);}
+  .badge.info{background:var(--ice);color:var(--blue);}
+
+  /* Angle / curvature table */
+  table{width:100%;border-collapse:collapse;background:var(--white);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);}
+  th,td{padding:13px 16px;text-align:left;border-bottom:1px solid var(--line);font-size:.92rem;}
+  th{background:var(--navy);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;font-weight:500;}
+  tr:last-child td{border-bottom:none;}
+  tr:hover td{background:var(--ice);}
+  td.mono-num{font-family:'IBM Plex Mono',monospace;color:var(--blue);font-weight:600;}
+
+  /* Interactive spine diagram (embryology signature element) */
+  .spine-interactive{display:grid;grid-template-columns:280px 1fr;gap:28px;align-items:start;background:var(--white);border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:var(--shadow);}
+  @media (max-width:800px){.spine-interactive{grid-template-columns:1fr;}}
+  .spine-svg-wrap{display:flex;justify-content:center;}
+  .spine-svg-wrap svg{width:220px;height:auto;}
+  .curve-zone{cursor:pointer;transition:filter .15s, opacity .15s;}
+  .curve-zone:hover, .curve-zone.active{filter:drop-shadow(0 0 6px rgba(29,111,165,.7));}
+  .spine-detail{min-height:210px;}
+  .spine-detail h4{color:var(--blue);margin-bottom:4px;}
+  .spine-detail .tag-row{display:flex;gap:8px;margin:10px 0 14px;flex-wrap:wrap;}
+  .spine-detail-placeholder{color:var(--ink-soft);font-style:italic;}
+
+  /* Clinical timeline */
+  .flow{display:flex;flex-wrap:wrap;gap:0;align-items:stretch;margin-top:6px;}
+  .flow-step{
+    flex:1 1 150px;background:var(--white);border:1px solid var(--line);border-radius:12px;padding:16px;position:relative;
+    box-shadow:var(--shadow);
+  }
+  .flow-step .step-num{font-family:'IBM Plex Mono',monospace;color:var(--blue);font-size:.75rem;margin-bottom:6px;display:block;}
+  .flow-arrow{display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:1.3rem;padding:0 8px;}
+  @media (max-width:800px){.flow{flex-direction:column;}.flow-arrow{transform:rotate(90deg);padding:4px 0;}}
+
+  /* sandwich diagram */
+  .sandwich-diagram{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:var(--shadow);}
+  .sandwich-diagram svg{width:100%;max-width:560px;display:block;margin:0 auto;}
+
+  /* Glossary accordion */
+  .accordion-item{border:1px solid var(--line);border-radius:12px;margin-bottom:10px;background:var(--white);overflow:hidden;}
+  .accordion-trigger{
+    width:100%;text-align:left;background:none;border:none;padding:15px 18px;font-family:'Inter',sans-serif;
+    font-size:.98rem;font-weight:700;color:var(--navy);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;
+  }
+  .accordion-trigger .term-note{font-family:'IBM Plex Mono',monospace;font-weight:500;color:var(--blue);font-size:.78rem;}
+  .accordion-trigger .chev{transition:transform .2s;color:var(--blue);}
+  .accordion-item.open .chev{transform:rotate(180deg);}
+  .accordion-panel{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+  .accordion-item.open .accordion-panel{max-height:220px;}
+  .accordion-panel-inner{padding:0 18px 16px;color:var(--ink-soft);font-size:.92rem;}
+
+  /* Flashcards */
+  .flash{
+    perspective:1200px;height:170px;cursor:pointer;
+  }
+  .flash-inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d;}
+  .flash.flipped .flash-inner{transform:rotateY(180deg);}
+  .flash-face{
+    position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:18px;
+    display:flex;flex-direction:column;justify-content:center;box-shadow:var(--shadow);border:1px solid var(--line);
+  }
+  .flash-front{background:var(--white);}
+  .flash-back{background:var(--navy);color:#fff;transform:rotateY(180deg);}
+  .flash-front .q-label, .flash-back .a-label{font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:8px;}
+  .flash-back .a-label{color:var(--blue-light);}
+  .flash-front p, .flash-back p{margin:0;font-size:.95rem;}
+  .flash-hint{font-family:'IBM Plex Mono',monospace;font-size:.62rem;color:var(--ink-soft);position:absolute;bottom:10px;right:14px;opacity:.6;}
+
+  /* MCQ */
+  .mcq{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:20px 22px;box-shadow:var(--shadow);margin-bottom:16px;}
+  .mcq-q{font-weight:700;margin-bottom:12px;}
+  .mcq-options{display:flex;flex-direction:column;gap:8px;}
+  .mcq-opt{
+    text-align:left;padding:10px 14px;border-radius:9px;border:1px solid var(--line);background:var(--paper);
+    cursor:pointer;font-family:'Inter',sans-serif;font-size:.92rem;transition:background .15s,border-color .15s;
+  }
+  .mcq-opt:hover{border-color:var(--blue-light);}
+  .mcq-opt.correct{background:#e3f3e6;border-color:#4f9a63;}
+  .mcq-opt.wrong{background:var(--red-soft);border-color:var(--red);}
+  .mcq-explain{margin-top:10px;font-size:.85rem;color:var(--ink-soft);display:none;padding-top:10px;border-top:1px dashed var(--line);}
+  .mcq-explain.show{display:block;}
+
+  /* Homework cards */
+  .homework{background:linear-gradient(160deg,#0d3a63,var(--navy-deep));color:#e7f0f9;border-radius:16px;padding:22px 24px;box-shadow:var(--shadow);}
+  .homework h3{color:#fff;}
+  .homework textarea{
+    width:100%;min-height:70px;margin-top:12px;border-radius:10px;border:1px solid rgba(255,255,255,.25);
+    background:rgba(255,255,255,.06);color:#fff;padding:10px 12px;font-family:'Inter',sans-serif;resize:vertical;
+  }
+  .homework textarea::placeholder{color:#93aac2;}
+  .homework .hint-btn{margin-top:10px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#fff;padding:7px 14px;border-radius:8px;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:.72rem;}
+  .homework .hint-text{display:none;margin-top:10px;font-size:.85rem;color:#cfe0ef;border-left:2px solid var(--blue-light);padding-left:10px;}
+  .homework .hint-text.show{display:block;}
+
+  /* Gallery */
+  .gallery-item{background:var(--white);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);cursor:zoom-in;}
+  .gallery-item img{background:#fff;padding:14px;height:220px;object-fit:contain;}
+  .gallery-cap{padding:12px 16px 16px;}
+  .gallery-cap h4{font-size:.9rem;margin-bottom:3px;}
+  .gallery-cap .src{font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:var(--ink-soft);}
+
+  .lightbox{position:fixed;inset:0;background:rgba(5,20,40,.85);display:none;align-items:center;justify-content:center;z-index:999;padding:30px;}
+  .lightbox.show{display:flex;}
+  .lightbox img{max-height:85vh;background:#fff;border-radius:10px;padding:16px;}
+  .lightbox-close{position:absolute;top:20px;right:26px;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;line-height:1;}
+
+  /* mnemonic */
+  .mnemonic-card{
+    background:linear-gradient(160deg,var(--amber-soft),#fff);border:1px solid #ecd3a1;border-radius:16px;padding:24px;box-shadow:var(--shadow);
+  }
+  .mnemonic-word{font-family:'Fraunces',serif;font-size:1.5rem;color:var(--navy);letter-spacing:.02em;}
+  .mnemonic-letters{display:flex;gap:14px;flex-wrap:wrap;margin-top:16px;}
+  .mnemonic-letter{text-align:center;}
+  .mnemonic-letter .L{width:44px;height:44px;border-radius:10px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:1.1rem;margin:0 auto 6px;}
+  .mnemonic-letter .txt{font-size:.72rem;color:var(--ink-soft);max-width:70px;}
+
+  /* quote from lecture */
+  blockquote{
+    margin:0;padding:16px 20px;background:var(--ice);border-left:4px solid var(--blue);border-radius:0 12px 12px 0;
+    font-size:.95rem;color:var(--navy);font-style:italic;
+  }
+
+  footer{padding:34px 48px 60px;color:var(--ink-soft);font-size:.82rem;}
+  footer a{color:var(--blue);}
+
+  .fade-in{opacity:0;transform:translateY(14px);transition:opacity .5s ease, transform .5s ease;}
+  .fade-in.in{opacity:1;transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important; scroll-behavior:auto !important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <!-- ================= SIDEBAR / LECTURE NAVIGATOR ================= -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">🧠</div>
+      <div>
+        <div class="brand-name">Neuroscience</div>
+        <div class="brand-sub">CNS Lecture Series</div>
+      </div>
+    </div>
+
+    <input class="nav-search" id="navSearch" type="text" placeholder="Search this lecture…">
+
+    <div class="navigator-label">Lecture Navigator</div>
+    <div class="lecture-item">
+      <div class="lecture-title">Clinical Anatomy of Spinal Curvatures</div>
+      <div class="lecture-meta">Dr. Hassan Salaheldeen · Spine curvature &amp; anatomy</div>
+      <ul class="toc">
+        <li><a href="#overview"><span class="dot"></span>Overview</a></li>
+        <li><a href="#embryology"><span class="dot"></span>Curvature Embryology</a></li>
+        <li><a href="#clinical"><span class="dot"></span>Clinical Correlations</a></li>
+        <li><a href="#vocabulary"><span class="dot"></span>Vocabulary</a></li>
+        <li><a href="#examzone"><span class="dot"></span>Exam Zone</a></li>
+        <li><a href="#mnemonics"><span class="dot"></span>Mnemonics</a></li>
+        <li><a href="#gallery"><span class="dot"></span>Gallery</a></li>
+      </ul>
+    </div>
+
+    <div class="navigator-label">Anatomical Rail</div>
+    <div class="rail-spine">
+      <svg viewBox="0 0 120 260" id="railSpine">
+        <path d="M60 10 C 40 40, 40 60, 60 85" stroke="#3d5878" stroke-width="7" fill="none" stroke-linecap="round" class="rail-seg" data-seg="cervical"/>
+        <path d="M60 85 C 82 105, 82 140, 60 165" stroke="#3d5878" stroke-width="7" fill="none" stroke-linecap="round" class="rail-seg" data-seg="thoracic"/>
+        <path d="M60 165 C 38 185, 38 205, 60 225" stroke="#3d5878" stroke-width="7" fill="none" stroke-linecap="round" class="rail-seg" data-seg="lumbar"/>
+        <path d="M60 225 C 76 238, 76 248, 62 255" stroke="#3d5878" stroke-width="7" fill="none" stroke-linecap="round" class="rail-seg" data-seg="sacral"/>
+      </svg>
+      <div class="rail-caption" id="railCaption">scroll to explore</div>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-label" id="progressLabel">0% reviewed</div>
+    </div>
+  </aside>
+
+  <!-- ================= MAIN ================= -->
+  <main>
+
+    <!-- HERO -->
+    <header class="hero" id="hero">
+      <div class="kicker">Neuroscience · Lecture Notes</div>
+      <h1>Spinal Curvatures: From Fetus to Bedside</h1>
+      <p class="lede">A complete review of primary &amp; secondary spinal curvatures, developmental milestones, radiological red flags, and the ligamentum flavum–disc "sandwich" effect.</p>
+      <div class="hero-meta">
+        <span class="pill">👨‍⚕️ Dr. Hassan Salaheldeen</span>
+        <span class="pill">🧬 Embryology · Anatomy · Clinical</span>
+        <span class="pill">⭐⭐⭐ High-Yield Lecture</span>
+      </div>
+    </header>
+
+    <!-- OVERVIEW -->
+    <section id="overview">
+      <div class="section-head">
+        <div class="section-num">01 · Course Overview</div>
+        <h2>Lecture Objectives</h2>
+        <p>By the end of this lecture, students should be able to:</p>
+      </div>
+      <div class="grid grid-3">
+        <div class="card"><span class="icon">🌀</span><h3>C-Shape &amp; Curvature Types</h3><p>Describe the fetal C-shape and differentiate primary (retained) from secondary (reversed) spinal curvatures.</p></div>
+        <div class="card"><span class="icon">📅</span><h3>Developmental Milestones</h3><p>Link cervical lordosis to neck stability (~6 months) and lumbar lordosis to independent erect walking (~1 year).</p></div>
+        <div class="card"><span class="icon">📐</span><h3>Normal Angulations</h3><p>Recall the normal degree ranges of cervical, dorsal and lumbar curves for radiological interpretation.</p></div>
+        <div class="card"><span class="icon">🚩</span><h3>Radiological Red Flags</h3><p>Recognize "straightening," reversed lordosis and cervical kyphosis as markers of pathology.</p></div>
+        <div class="card"><span class="icon">🥪</span><h3>The Sandwich Effect</h3><p>Explain anterior disc herniation + posterior ligamentum flavum hypertrophy causing cord compression.</p></div>
+        <div class="card"><span class="icon">🔪</span><h3>Surgical Decompression</h3><p>Sequence the posterior approach: laminectomy → flavectomy → discectomy ± fixation.</p></div>
+      </div>
+    </section>
+
+    <!-- EMBRYOLOGY / INTERACTIVE SPINE -->
+    <section id="embryology">
+      <div class="section-head">
+        <div class="section-num">02 · Neuroanatomy &amp; Embryology</div>
+        <h2>From the Fetal C-Shape to Four Curves</h2>
+        <p>At birth, the entire spine forms a single <strong>C shape</strong> — concave anteriorly across every region. This fetal shape is the origin from which all adult curvatures branch.</p>
+      </div>
+
+      <blockquote>"From the moment the baby leaves the womb, the whole spine is one C shape." — lecture opening</blockquote>
+
+      <div style="height:26px"></div>
+
+      <div class="spine-interactive">
+        <div class="spine-svg-wrap">
+          <svg viewBox="0 0 220 480" id="mainSpine">
+            <!-- head -->
+            <circle cx="128" cy="26" r="20" fill="#EAF3FA" stroke="#1D6FA5" stroke-width="2"/>
+            <!-- cervical: secondary, lordosis (concave posteriorly / curves back) -->
+            <path id="seg-cervical" class="curve-zone" data-seg="cervical"
+                  d="M128 46 C 96 78, 96 108, 128 140" stroke="#5FA8D3" stroke-width="16" fill="none" stroke-linecap="round"/>
+            <!-- thoracic: primary, kyphosis -->
+            <path id="seg-thoracic" class="curve-zone" data-seg="thoracic"
+                  d="M128 140 C 168 168, 168 232, 128 262" stroke="#1D6FA5" stroke-width="16" fill="none" stroke-linecap="round"/>
+            <!-- lumbar: secondary, lordosis -->
+            <path id="seg-lumbar" class="curve-zone" data-seg="lumbar"
+                  d="M128 262 C 90 290, 90 326, 128 352" stroke="#5FA8D3" stroke-width="16" fill="none" stroke-linecap="round"/>
+            <!-- sacral: primary, kyphosis -->
+            <path id="seg-sacral" class="curve-zone" data-seg="sacral"
+                  d="M128 352 C 160 372, 160 400, 138 424" stroke="#1D6FA5" stroke-width="16" fill="none" stroke-linecap="round"/>
+            <text x="8" y="96" font-family="IBM Plex Mono" font-size="11" fill="#4C5D74">C</text>
+            <text x="8" y="205" font-family="IBM Plex Mono" font-size="11" fill="#4C5D74">T</text>
+            <text x="8" y="310" font-family="IBM Plex Mono" font-size="11" fill="#4C5D74">L</text>
+            <text x="8" y="392" font-family="IBM Plex Mono" font-size="11" fill="#4C5D74">S</text>
+          </svg>
+        </div>
+        <div class="spine-detail" id="spineDetail">
+          <div class="spine-detail-placeholder">👆 Click a curve (cervical, thoracic, lumbar, sacral) to reveal its details — type, name, normal angle, and developmental trigger.</div>
+        </div>
+      </div>
+
+      <div style="height:34px"></div>
+
+      <table>
+        <thead>
+          <tr><th>Segment</th><th>Curve type</th><th>Direction</th><th>Normal name</th><th>Normal angle</th><th>Develops when</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Cervical</td><td>Secondary</td><td>Concave posteriorly (reversed C)</td><td>Normal lordosis</td><td class="mono-num">20°–40°</td><td>Neck stability, ~6 months</td></tr>
+          <tr><td>Dorsal / Thoracic</td><td>Primary</td><td>Concave anteriorly (original C)</td><td>Normal kyphosis</td><td class="mono-num">20°–40°</td><td>Present from birth</td></tr>
+          <tr><td>Lumbar</td><td>Secondary</td><td>Concave posteriorly (reversed C)</td><td>Normal lordosis</td><td class="mono-num">30°–60°</td><td>Erect standing / walking, ~1 year</td></tr>
+          <tr><td>Sacral</td><td>Primary</td><td>Concave anteriorly (original C)</td><td>Normal kyphosis</td><td class="mono-num">20°–40°</td><td>Present from birth</td></tr>
+        </tbody>
+      </table>
+
+      <div style="height:20px"></div>
+      <div class="grid grid-2">
+        <div class="card">
+          <span class="badge hy2">⭐⭐ High-Yield</span>
+          <h3>Why does the neck change first?</h3>
+          <p>The cervical spine is the first to break from the original C shape, because the infant begins lifting the head and gains <strong>neck stability</strong> — this happens at roughly <strong>6 months</strong> (also a key pediatric developmental milestone).</p>
+        </div>
+        <div class="card">
+          <span class="badge hy2">⭐⭐ High-Yield</span>
+          <h3>Why the lumbar spine comes later</h3>
+          <p>The lumbar spine reverses later because it requires the child to stand in an <strong>erect position</strong> and begin walking, which happens at roughly <strong>one year</strong> of age.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLINICAL CORRELATIONS -->
+    <section id="clinical">
+      <div class="section-head">
+        <div class="section-num">03 · Clinical Correlations</div>
+        <h2>From Bad Posture to the Operating Room</h2>
+        <p>A chain of clinical links: starting with a simple daily habit (the pillow) and ending with the surgical steps (Laminectomy → Flavectomy → Discectomy).</p>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <span class="badge clin">🚩 Postural Risk</span>
+          <h3>Extra pillows reverse the lordosis</h3>
+          <p>Every time you prop the head up with too many pillows (especially while looking at a phone) so the <strong>chin</strong> moves toward the <strong>chest</strong>, you reverse the normal cervical lordosis. This is one of the most common everyday causes of cervical disc disease.</p>
+        </div>
+        <div class="card">
+          <span class="badge clin">🚩 Radiology Sign</span>
+          <h3>Straightening of the cervical spine</h3>
+          <p>A common phrase in radiology reports meaning loss of the normal cervical curvature — an early sign of muscle spasm or degeneration that warrants clinical evaluation.</p>
+        </div>
+      </div>
+
+      <div style="height:22px"></div>
+      <h3 style="margin-bottom:14px;">Progression of cervical curvature loss</h3>
+      <div class="flow">
+        <div class="flow-step"><span class="step-num">01</span><strong>Normal lordosis</strong><p style="margin:6px 0 0;color:var(--ink-soft);font-size:.86rem;">Cervical concave posteriorly, 20°–40°.</p></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><span class="step-num">02</span><strong>Straightening</strong><p style="margin:6px 0 0;color:var(--ink-soft);font-size:.86rem;">Loss of normal curvature on X-ray.</p></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step" style="border-color:var(--red);"><span class="step-num" style="color:var(--red);">03</span><strong>Reversed lordosis / Kyphosis</strong><p style="margin:6px 0 0;color:var(--ink-soft);font-size:.86rem;">Severe structural failure — often needs surgery.</p></div>
+      </div>
+
+      <div style="height:34px"></div>
+      <h3 style="margin-bottom:4px;">🥪 The "Sandwich" Effect — Spinal Canal Narrowing</h3>
+      <p style="max-width:64ch;color:var(--ink-soft);">The spinal cord can be compressed from both sides at once: a herniated <strong>disc anteriorly</strong>, and hypertrophied <strong>ligamentum flavum (the "yellow ligament") posteriorly</strong>.</p>
+      <div style="height:16px"></div>
+      <div class="sandwich-diagram">
+        <svg viewBox="0 0 560 220">
+          <!-- vertebral body anterior -->
+          <rect x="40" y="70" width="90" height="80" rx="8" fill="#EAF3FA" stroke="#1D6FA5" stroke-width="2"/>
+          <text x="85" y="115" text-anchor="middle" font-family="Inter" font-size="12" fill="#0A2540">Vertebral</text>
+          <text x="85" y="130" text-anchor="middle" font-family="Inter" font-size="12" fill="#0A2540">body</text>
+
+          <!-- disc pushing from anterior (left) -->
+          <path d="M130 90 C 175 70, 175 150, 130 130 L 130 90 Z" fill="#B23A3A" opacity=".85"/>
+          <text x="150" y="66" text-anchor="middle" font-family="Inter" font-size="12" fill="#B23A3A" font-weight="600">Herniated disc</text>
+          <text x="150" y="182" text-anchor="middle" font-family="Inter" font-size="11" fill="#B23A3A">(anterior)</text>
+
+          <!-- spinal cord, sandwiched -->
+          <circle cx="270" cy="110" r="34" fill="#F4E3C6" stroke="#C6862B" stroke-width="3"/>
+          <text x="270" y="115" text-anchor="middle" font-family="Inter" font-size="12" fill="#7a4d0a" font-weight="700">Spinal</text>
+          <text x="270" y="130" text-anchor="middle" font-family="Inter" font-size="12" fill="#7a4d0a" font-weight="700">cord</text>
+
+          <!-- ligamentum flavum from posterior (right) -->
+          <path d="M410 90 C 365 70, 365 150, 410 130 L 410 90 Z" fill="#C6862B" opacity=".85"/>
+          <text x="392" y="66" text-anchor="middle" font-family="Inter" font-size="12" fill="#8a5c15" font-weight="600">Ligamentum flavum</text>
+          <text x="392" y="182" text-anchor="middle" font-family="Inter" font-size="11" fill="#8a5c15">(posterior, hypertrophied)</text>
+
+          <!-- posterior elements -->
+          <rect x="410" y="70" width="90" height="80" rx="8" fill="#EAF3FA" stroke="#1D6FA5" stroke-width="2"/>
+          <text x="455" y="115" text-anchor="middle" font-family="Inter" font-size="12" fill="#0A2540">Lamina /</text>
+          <text x="455" y="130" text-anchor="middle" font-family="Inter" font-size="12" fill="#0A2540">arch</text>
+
+          <!-- compression arrows -->
+          <path d="M200 110 L 232 110" stroke="#B23A3A" stroke-width="3" marker-end="url(#arrowRed)"/>
+          <path d="M340 110 L 308 110" stroke="#C6862B" stroke-width="3" marker-end="url(#arrowAmber)"/>
+          <defs>
+            <marker id="arrowRed" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#B23A3A"/></marker>
+            <marker id="arrowAmber" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M8,0 L0,4 L8,8 Z" fill="#C6862B"/></marker>
+          </defs>
+        </svg>
+      </div>
+
+      <div style="height:34px"></div>
+      <h3 style="margin-bottom:4px;">🔪 Surgical Decompression Steps</h3>
+      <p style="max-width:64ch;color:var(--ink-soft);">Posterior decompression sequence — fixation is optional, not mandatory.</p>
+      <div style="height:14px"></div>
+      <div class="flow">
+        <div class="flow-step"><span class="step-num">1</span><strong>Laminectomy</strong><p style="margin:6px 0 0;color:var(--ink-soft);font-size:.86rem;">Removal of the posterior lamina.</p></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><span class="step-num">2</span><strong>Flavectomy</strong><p style="margin:6px 0 0;color:var(--ink-soft);font-size:.86rem;">Removal of the hypertrophied yellow ligament.</p></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><span class="step-num">3</span><strong>Discectomy</strong><p style="margin:6px 0 0;color:var(--ink-soft);font-size:.86rem;">Removal of the herniated disc.</p></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step" style="background:var(--ice);"><span class="step-num">±</span><strong>Fixation</strong><p style="margin:6px 0 0;color:var(--ink-soft);font-size:.86rem;">Optional stabilizing hardware — not always required.</p></div>
+      </div>
+    </section>
+
+    <!-- VOCABULARY -->
+    <section id="vocabulary">
+      <div class="section-head">
+        <div class="section-num">04 · Difficult Medical Vocabulary</div>
+        <h2>Glossary of Terms</h2>
+        <p>Key terms from the lecture — click to reveal the definition.</p>
+      </div>
+      <div id="glossaryList"></div>
+    </section>
+
+    <!-- EXAM ZONE -->
+    <section id="examzone">
+      <div class="section-head">
+        <div class="section-num">05 · High-Yield Exam Zone</div>
+        <h2>Review &amp; Exam Practice</h2>
+        <p>Flip the flashcards to test recall, then try the SBA questions below. ⭐⭐⭐ = must-know for exams.</p>
+      </div>
+
+      <div class="grid grid-3" id="flashGrid"></div>
+
+      <div style="height:34px"></div>
+      <h3 style="margin-bottom:14px;">Single Best Answer (SBA)</h3>
+      <div id="mcqList"></div>
+
+      <div style="height:26px"></div>
+      <div class="grid grid-2">
+        <div class="homework">
+          <span class="badge hy3">⭐⭐⭐ Homework</span>
+          <h3>Ossification centers of the cervical lamina</h3>
+          <p style="color:#cfe0ef;">How many <strong>primary</strong> and how many <strong>secondary</strong> ossification centers form the cervical lamina? Write your answer, then reveal a starting hint.</p>
+          <textarea placeholder="Write your answer here…"></textarea>
+          <button class="hint-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal hint</button>
+          <div class="hint-text">General rule: a typical vertebra has 3 primary ossification centers (1 body + 2 neural arch halves) and up to 5 secondary centers appearing at puberty (spinous tip, 2 transverse tips, 2 body epiphyseal rings). The cervical spine (especially C1/C2) has notable exceptions — confirm the exact cervical-specific count with your reference/instructor.</div>
+        </div>
+        <div class="homework">
+          <span class="badge hy3">⭐⭐⭐ Homework</span>
+          <h3>The "extra" cervical joint</h3>
+          <p style="color:#cfe0ef;">Besides the standard facet joints, the cervical spine has one more paired joint. What is it called, and between which structures does it form?</p>
+          <textarea placeholder="Write your answer here…"></textarea>
+          <button class="hint-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal answer</button>
+          <div class="hint-text">Uncovertebral joints (Joints of Luschka) — small synovial-like joints between the uncinate processes of the lateral vertebral body margins, typically C3–C7.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MNEMONICS -->
+    <section id="mnemonics">
+      <div class="section-head">
+        <div class="section-num">06 · Memory &amp; Mnemonics</div>
+        <h2>Memory Aids</h2>
+      </div>
+      <div class="mnemonic-card">
+        <div class="mnemonic-word">"SCaLe up"</div>
+        <p style="margin-top:10px;max-width:60ch;">Remember that the <strong>Secondary</strong> curves are <strong>Cervical</strong> and <strong>Lumbar</strong> — both appear as the infant "scales up" developmentally: lifting the head first (Cervical), then standing and walking upright (Lumbar).</p>
+        <div class="mnemonic-letters">
+          <div class="mnemonic-letter"><div class="L">S</div><div class="txt">Secondary curves</div></div>
+          <div class="mnemonic-letter"><div class="L">C</div><div class="txt">Cervical — lifts head</div></div>
+          <div class="mnemonic-letter"><div class="L">L</div><div class="txt">Lumbar — stands &amp; walks</div></div>
+        </div>
+      </div>
+      <div style="height:16px"></div>
+      <div class="card">
+        <h3>Primary vs. Secondary — quick rule</h3>
+        <p><strong>Primary curvature</strong> = keeps the original fetal C-shape (concave anteriorly) → Thoracic &amp; Sacral, present from birth.<br>
+        <strong>Secondary curvature</strong> = reverses the C-shape (concave posteriorly) → Cervical &amp; Lumbar, develops after birth with voluntary movement.</p>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" style="border-bottom:none;">
+      <div class="section-head">
+        <div class="section-num">07 · Images &amp; Simplified Atlas</div>
+        <h2>Reference Illustrations</h2>
+        <p>Open-licensed reference illustrations from Wikimedia Commons (Creative Commons / Public Domain — credit shown under each image) — click to enlarge.</p>
+      </div>
+      <div class="grid grid-3" id="galleryGrid"></div>
+    </section>
+
+    <footer>
+      <p>Neuroscience — Lecture notes prepared from classroom transcript by Dr. Hassan Salaheldeen. Gallery illustrations sourced from <a href="https://commons.wikimedia.org/wiki/Category:Human_vertebral_column" target="_blank" rel="noopener">Wikimedia Commons</a> under Creative Commons (BY-SA 3.0/4.0, credit: Jmarchn, InjuryMap, Mikael Häggström) or Public Domain (Gray's Anatomy, 1918) — full credit shown beneath each image. Diagrams (spine rail, sandwich-effect, decompression flow) are original SVGs created for this page.</p>
+    </footer>
+  </main>
+</div>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose">&times;</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<script>
+/* ============ DATA ============ */
+const glossary = [
+  {term:"Primary curvature", def:"Curvature that retains the original fetal C-shape (concave anteriorly) — thoracic and sacral regions. Present from birth."},
+  {term:"Secondary curvature", def:"Curvature that reverses the fetal C-shape (concave posteriorly) — cervical and lumbar regions. Develops after birth with motor milestones."},
+  {term:"Lordosis", def:"Normal forward curve of the spine, seen in the cervical and lumbar regions (secondary curvatures)."},
+  {term:"Kyphosis", def:"Normal backward curve of the spine, seen in the thoracic and sacral regions (primary curvatures)."},
+  {term:"Ligamentum flavum", def:"'Flavum' = yellow. A ligament connecting adjacent laminae; hypertrophy narrows the spinal canal from posteriorly."},
+  {term:"Neck stability", def:"The infant's ability to hold the head up unsupported — milestone at ~6 months; triggers cervical lordosis."},
+  {term:"Erect position", def:"Upright standing posture assumed once walking begins (~1 year); triggers lumbar lordosis."},
+  {term:"Laminectomy", def:"Surgical removal of the vertebral lamina to access and decompress the spinal canal posteriorly."},
+  {term:"Flavectomy", def:"Surgical removal of the hypertrophied ligamentum flavum during posterior decompression."},
+  {term:"Discectomy", def:"Surgical removal of herniated intervertebral disc material."},
+  {term:"Fixation", def:"Optional surgical hardware (screws/rods) added after decompression for spinal stability — 'plus or minus,' not mandatory."},
+  {term:"Ossification center", def:"A site within cartilage where bone formation begins; vertebrae have primary (fetal) and secondary (pubertal) centers."},
+  {term:"Uncovertebral joint (Joint of Luschka)", def:"An accessory joint in the cervical spine (C3–C7) between uncinate processes, distinct from the facet joints."},
+  {term:"Straightening of cervical spine", def:"Radiological term for loss of the normal cervical lordotic curve — an early, often reversible, warning sign."},
+];
+
+const flashcards = [
+  {q:"What shape is the spine at birth?", a:"A single C shape spanning the whole spine — concave anteriorly."},
+  {q:"What is normal lordosis?", a:"The secondary curvature in the cervical and lumbar spine — the reverse of the original C direction."},
+  {q:"At what age does cervical lordosis develop?", a:"~6 months, with the achievement of neck stability."},
+  {q:"At what age does lumbar lordosis develop?", a:"~1 year, with the onset of standing and walking."},
+  {q:"What does 'ligamentum flavum' mean?", a:"The 'yellow ligament' — compresses the spinal cord posteriorly when hypertrophied."},
+  {q:"What is the order of the three surgical steps?", a:"Laminectomy → Flavectomy → Discectomy (± Fixation)."},
+  {q:"What does 'straightening of the cervical spine' mean on X-ray?", a:"Loss of the normal curvature — an early abnormal sign."},
+  {q:"What is the normal range for lumbar lordosis angle?", a:"30° to 60°."},
+  {q:"Which two regions represent primary curvature?", a:"Thoracic (dorsal) and Sacral."},
+];
+
+const mcqs = [
+  {
+    q:"Habitually sleeping propped up on several pillows, with the chin drawn toward the chest, leads to:",
+    options:["Reinforcement of the normal lordosis","Reversal of the normal cervical lordosis","Increased lumbar lordosis only","No clinical effect"],
+    correct:1,
+    explain:"Persistently bringing the chin toward the chest reverses the normal cervical curvature and is a common everyday cause of cervical disc disease."
+  },
+  {
+    q:"Which of the following represents a primary curvature that retains the original fetal C-shape?",
+    options:["Cervical & Lumbar","Thoracic & Sacral","Cervical & Sacral only","Lumbar only"],
+    correct:1,
+    explain:"The thoracic (dorsal) and sacral curves keep the original direction (concave anteriorly) = primary curvature, of kyphosis type."
+  },
+  {
+    q:"In the 'sandwich effect' on the spinal cord, where does the compression come from?",
+    options:["Anterior only (the disc)","Posterior only (the ligamentum flavum)","Both anterior (disc) and posterior (ligamentum flavum) together","Both sides (facet joints)"],
+    correct:2,
+    explain:"A herniated disc compresses from the front, and a hypertrophied ligamentum flavum compresses from the back, producing 'sandwich' compression of the spinal cord."
+  },
+  {
+    q:"What is the first surgical step in the posterior decompression sequence?",
+    options:["Discectomy","Flavectomy","Fixation","Laminectomy"],
+    correct:3,
+    explain:"The sequence is: Laminectomy first to remove the lamina, then Flavectomy, then Discectomy; fixation is optional."
+  },
+];
+
+const gallery = [
+  {
+    title:"Spinal column curvatures (lateral view)",
+    src:"https://commons.wikimedia.org/wiki/Special:FilePath/Spinal_column_curvature-en.svg",
+    credit:"Wikimedia Commons · CC BY-SA 4.0 · Jmarchn"
+  },
+  {
+    title:"Kyphosis angle measurement (Cobb-style)",
+    src:"https://commons.wikimedia.org/wiki/Special:FilePath/Measurement_of_kyphosis.svg",
+    credit:"Wikimedia Commons · CC BY-SA 4.0 · Jmarchn"
+  },
+  {
+    title:"Spinal canal stenosis (cross-section)",
+    src:"https://commons.wikimedia.org/wiki/Special:FilePath/Spinal_stenosis.svg",
+    credit:"Wikimedia Commons · CC BY-SA 4.0 · Jmarchn"
+  },
+  {
+    title:"Spinal canal stenosis (lateral view)",
+    src:"https://commons.wikimedia.org/wiki/Special:FilePath/Spinal_stenosis_side.svg",
+    credit:"Wikimedia Commons · CC BY-SA 4.0 · Jmarchn"
+  },
+  {
+    title:"Cervical disc herniation (anterior compression)",
+    src:"https://commons.wikimedia.org/wiki/Special:FilePath/Cervical%20disk%20herniation.svg",
+    credit:"Wikimedia Commons · CC BY-SA 4.0 · InjuryMap"
+  },
+  {
+    title:"Herniated intervertebral disc",
+    src:"https://commons.wikimedia.org/wiki/Special:FilePath/Herniated%20disk.svg",
+    credit:"Wikimedia Commons · CC BY-SA 4.0 · InjuryMap"
+  },
+  {
+    title:"Intervertebral disc anatomy",
+    src:"https://commons.wikimedia.org/wiki/Special:FilePath/716%20Intervertebral%20Disk.svg",
+    credit:"Wikimedia Commons · CC BY-SA 3.0 · Mikael Häggström"
+  },
+  {
+    title:"Vertebral lamina (site of laminectomy)",
+    src:"https://commons.wikimedia.org/wiki/Special:FilePath/Laminectomy.jpg",
+    credit:"Wikimedia Commons · Public Domain · Gray's Anatomy, 1918"
+  },
+];
+
+const spineInfo = {
+  cervical:{title:"Cervical", type:"Secondary curvature", tag:"lordosis", angle:"20°–40°", note:"Develops with neck stability (~6 months). Easily reversed by poor pillow posture — watch for 'straightening' on X-ray."},
+  thoracic:{title:"Thoracic / Dorsal", type:"Primary curvature", tag:"kyphosis", angle:"20°–40°", note:"Retains the original fetal C-shape. Present from birth, unaffected by postnatal milestones."},
+  lumbar:{title:"Lumbar", type:"Secondary curvature", tag:"lordosis", angle:"30°–60°", note:"Develops when the child stands and walks (~1 year), enabling the erect posture."},
+  sacral:{title:"Sacral", type:"Primary curvature", tag:"kyphosis", angle:"20°–40°", note:"Retains the original fetal C-shape, fixed and immobile (fused sacral vertebrae)."}
+};
+
+/* ============ RENDER GLOSSARY ============ */
+const glossaryList = document.getElementById('glossaryList');
+glossary.forEach((item)=>{
+  const el = document.createElement('div');
+  el.className='accordion-item';
+  el.innerHTML = `
+    <button class="accordion-trigger">
+      <span>${item.term}</span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="accordion-panel"><div class="accordion-panel-inner">${item.def}</div></div>`;
+  el.querySelector('.accordion-trigger').addEventListener('click',()=>{
+    el.classList.toggle('open');
+  });
+  glossaryList.appendChild(el);
+});
+
+/* ============ RENDER FLASHCARDS ============ */
+const flashGrid = document.getElementById('flashGrid');
+flashcards.forEach(card=>{
+  const el = document.createElement('div');
+  el.className='flash';
+  el.innerHTML = `
+    <div class="flash-inner">
+      <div class="flash-face flash-front">
+        <div class="q-label">Question</div>
+        <p>${card.q}</p>
+        <div class="flash-hint">tap to flip</div>
+      </div>
+      <div class="flash-face flash-back">
+        <div class="a-label">Answer</div>
+        <p>${card.a}</p>
+      </div>
+    </div>`;
+  el.addEventListener('click',()=>el.classList.toggle('flipped'));
+  flashGrid.appendChild(el);
+});
+
+/* ============ RENDER MCQ ============ */
+const mcqList = document.getElementById('mcqList');
+mcqs.forEach((item,qi)=>{
+  const el = document.createElement('div');
+  el.className='mcq';
+  const optsHtml = item.options.map((opt,oi)=>`<button class="mcq-opt" data-i="${oi}">${opt}</button>`).join('');
+  el.innerHTML = `<div class="mcq-q">${qi+1}. ${item.q}</div>
+    <div class="mcq-options">${optsHtml}</div>
+    <div class="mcq-explain">${item.explain}</div>`;
+  el.querySelectorAll('.mcq-opt').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      if(el.dataset.answered) return;
+      el.dataset.answered = "1";
+      const chosen = parseInt(btn.dataset.i);
+      el.querySelectorAll('.mcq-opt').forEach((b,i)=>{
+        if(i===item.correct) b.classList.add('correct');
+        else if(i===chosen) b.classList.add('wrong');
+      });
+      el.querySelector('.mcq-explain').classList.add('show');
+    });
+  });
+  mcqList.appendChild(el);
+});
+
+/* ============ RENDER GALLERY ============ */
+const galleryGrid = document.getElementById('galleryGrid');
+gallery.forEach(img=>{
+  const el = document.createElement('div');
+  el.className='gallery-item';
+  el.innerHTML = `
+    <img src="${img.src}" alt="${img.title}" loading="lazy">
+    <div class="gallery-cap">
+      <h4>${img.title}</h4>
+      <div class="src">${img.credit}</div>
+    </div>`;
+  el.addEventListener('click',()=>{
+    document.getElementById('lightboxImg').src = img.src;
+    document.getElementById('lightboxImg').alt = img.title;
+    document.getElementById('lightbox').classList.add('show');
+  });
+  galleryGrid.appendChild(el);
+});
+document.getElementById('lightboxClose').addEventListener('click',()=>document.getElementById('lightbox').classList.remove('show'));
+document.getElementById('lightbox').addEventListener('click',(e)=>{ if(e.target.id==='lightbox') e.currentTarget.classList.remove('show'); });
+
+/* ============ SPINE INTERACTIVE ============ */
+const spineDetail = document.getElementById('spineDetail');
+document.querySelectorAll('.curve-zone').forEach(zone=>{
+  zone.addEventListener('click',()=>{
+    document.querySelectorAll('.curve-zone').forEach(z=>z.classList.remove('active'));
+    zone.classList.add('active');
+    const info = spineInfo[zone.dataset.seg];
+    spineDetail.innerHTML = `
+      <h4>${info.title}</h4>
+      <div class="tag-row">
+        <span class="badge info">${info.type}</span>
+        <span class="badge hy1">${info.tag}</span>
+        <span class="badge hy1 mono">${info.angle}</span>
+      </div>
+      <p style="color:var(--ink-soft);">${info.note}</p>`;
+  });
+});
+
+/* ============ SIDEBAR: search filter (glossary + flashcards) ============ */
+const navSearch = document.getElementById('navSearch');
+navSearch.addEventListener('input',()=>{
+  const q = navSearch.value.trim().toLowerCase();
+  document.querySelectorAll('#glossaryList .accordion-item').forEach((el,i)=>{
+    const hay = (glossary[i].term+glossary[i].def).toLowerCase();
+    el.style.display = q==='' || hay.includes(q) ? '' : 'none';
+  });
+  document.querySelectorAll('#flashGrid .flash').forEach((el,i)=>{
+    const hay = (flashcards[i].q+flashcards[i].a).toLowerCase();
+    el.style.display = q==='' || hay.includes(q) ? '' : 'none';
+  });
+});
+
+/* ============ SCROLL SPY: active TOC + rail highlight + progress ============ */
+const sections = ['overview','embryology','clinical','vocabulary','examzone','mnemonics','gallery'].map(id=>document.getElementById(id));
+const tocLinks = document.querySelectorAll('.toc a');
+const progressFill = document.getElementById('progressFill');
+const progressLabel = document.getElementById('progressLabel');
+const visited = new Set();
+
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    const id = entry.target.id;
+    const link = document.querySelector(`.toc a[href="#${id}"]`);
+    if(entry.isIntersecting){
+      tocLinks.forEach(l=>l.classList.remove('active'));
+      if(link) link.classList.add('active');
+      visited.add(id);
+      const pct = Math.round((visited.size / sections.length)*100);
+      progressFill.style.width = pct+'%';
+      progressLabel.textContent = pct+'% reviewed · '+visited.size+'/'+sections.length+' sections';
+    }
+  });
+},{rootMargin:'-35% 0px -55% 0px'});
+sections.forEach(s=>s && observer.observe(s));
+
+/* rail spine segment sync */
+const railMap = {overview:'cervical',embryology:'cervical',clinical:'thoracic',vocabulary:'lumbar',examzone:'lumbar',mnemonics:'sacral',gallery:'sacral'};
+const railCaption = document.getElementById('railCaption');
+const railObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const seg = railMap[entry.target.id];
+      document.querySelectorAll('.rail-seg').forEach(p=>p.setAttribute('stroke','#3d5878'));
+      const active = document.querySelector(`.rail-seg[data-seg="${seg}"]`);
+      if(active) active.setAttribute('stroke','#5FA8D3');
+      railCaption.textContent = entry.target.id;
+    }
+  });
+},{rootMargin:'-40% 0px -50% 0px'});
+sections.forEach(s=>s && railObserver.observe(s));
+
+/* fade-in on scroll for cards */
+document.querySelectorAll('.card, .mcq, .flash, .accordion-item, .gallery-item').forEach(el=>el.classList.add('fade-in'));
+const fadeObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); fadeObserver.unobserve(e.target);} });
+},{threshold:.1});
+document.querySelectorAll('.fade-in').forEach(el=>fadeObserver.observe(el));
+</script>
+</body>
+</html>
