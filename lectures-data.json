@@ -1,0 +1,321 @@
+[
+  {
+    "id": 1,
+    "title": "Introduction to Neuroscience",
+    "category": "Anatomy",
+    "file": "anatomy-01-introduction.html",
+    "description": "Introductory lecture to the nervous system by Dr. Wael.",
+    "tags": [
+      "introduction",
+      "overview"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "CNS General Organization",
+    "category": "Anatomy",
+    "file": "anatomy-02-cns-general-organization.html",
+    "description": "General organization and orientation of the Central Nervous System.",
+    "tags": [
+      "cns",
+      "organization",
+      "orientation"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Triangles of the Neck",
+    "category": "Anatomy",
+    "file": "anatomy-03-triangles-of-neck.html",
+    "description": "Anatomical triangles of the neck region.",
+    "tags": [
+      "neck",
+      "triangles"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Face, Scalp & Temporal Fossa",
+    "category": "Anatomy",
+    "file": "anatomy-04-face-scalp-temporal-fossa.html",
+    "description": "Anatomy of the face, scalp, and temporal fossa.",
+    "tags": [
+      "face",
+      "scalp",
+      "temporal fossa"
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Spinal Cord & Meninges",
+    "category": "Anatomy",
+    "file": "anatomy-05-spinal-cord-meninges.html",
+    "description": "External and internal anatomy of the spinal cord and meninges.",
+    "tags": [
+      "spinal cord",
+      "meninges"
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Ascending & Descending Spinal Tracts",
+    "category": "Anatomy",
+    "file": "anatomy-06-spinal-tracts.html",
+    "description": "Study resource covering ascending and descending tracts of the spinal cord.",
+    "tags": [
+      "tracts",
+      "ascending",
+      "descending",
+      "spinal cord"
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Brainstem",
+    "category": "Anatomy",
+    "file": "anatomy-07-brainstem.html",
+    "description": "Anatomy of the brainstem.",
+    "tags": [
+      "brainstem"
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Cerebellum",
+    "category": "Anatomy",
+    "file": "anatomy-08-cerebellum.html",
+    "description": "Study resource on the anatomy of the cerebellum.",
+    "tags": [
+      "cerebellum"
+    ]
+  },
+  {
+    "id": 9,
+    "title": "The Diencephalon",
+    "category": "Anatomy",
+    "file": "anatomy-09-diencephalon.html",
+    "description": "Neuroscience study resource on the diencephalon.",
+    "tags": [
+      "diencephalon",
+      "thalamus",
+      "hypothalamus"
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Diencephalon: History & Exam",
+    "category": "Anatomy",
+    "file": "anatomy-10-diencephalon-history-exam.html",
+    "description": "Clinical history and examination related to the diencephalon.",
+    "tags": [
+      "diencephalon",
+      "clinical exam"
+    ]
+  },
+  {
+    "id": 11,
+    "title": "Brain Blood Supply",
+    "category": "Anatomy",
+    "file": "anatomy-11-brain-blood-supply.html",
+    "description": "Dashboard covering the arterial blood supply of the brain.",
+    "tags": [
+      "blood supply",
+      "arteries",
+      "circle of willis"
+    ]
+  },
+  {
+    "id": 12,
+    "title": "Venous Drainage of the Brain",
+    "category": "Anatomy",
+    "file": "anatomy-12-venous-drainage.html",
+    "description": "Venous drainage system of the brain.",
+    "tags": [
+      "venous drainage",
+      "dural sinuses"
+    ]
+  },
+  {
+    "id": 13,
+    "title": "Hydrocephalus",
+    "category": "Anatomy",
+    "file": "anatomy-13-hydrocephalus.html",
+    "description": "Neuroscience study resource on hydrocephalus.",
+    "tags": [
+      "hydrocephalus",
+      "csf"
+    ]
+  },
+  {
+    "id": 14,
+    "title": "Seminar: Neuroscience Overview",
+    "category": "Anatomy",
+    "file": "anatomy-14-seminar-neuroscience.html",
+    "description": "Seminar commentary and overview notes on neuroscience.",
+    "tags": [
+      "seminar",
+      "overview"
+    ]
+  },
+  {
+    "id": 15,
+    "title": "Neurophysiology: Membrane Potentials",
+    "category": "Physiology",
+    "file": "physio-01-membrane-potentials.html",
+    "description": "Resting and action membrane potentials in neurons.",
+    "tags": [
+      "membrane potential",
+      "action potential"
+    ]
+  },
+  {
+    "id": 16,
+    "title": "Synaptic Transmission",
+    "category": "Physiology",
+    "file": "physio-02-synaptic-transmission.html",
+    "description": "Neuroscience module on synaptic transmission mechanisms.",
+    "tags": [
+      "synapse",
+      "neurotransmitters"
+    ]
+  },
+  {
+    "id": 17,
+    "title": "Autonomic Nervous System (ANS)",
+    "category": "Physiology",
+    "file": "physio-03-autonomic-nervous-system.html",
+    "description": "Study platform covering the autonomic nervous system.",
+    "tags": [
+      "ans",
+      "sympathetic",
+      "parasympathetic"
+    ]
+  },
+  {
+    "id": 18,
+    "title": "Sensory Receptors",
+    "category": "Physiology",
+    "file": "physio-04-sensory-receptors.html",
+    "description": "Hub covering types and function of sensory receptors.",
+    "tags": [
+      "sensory receptors"
+    ]
+  },
+  {
+    "id": 19,
+    "title": "Sensory Pathways",
+    "category": "Physiology",
+    "file": "physio-05-sensory-pathways.html",
+    "description": "Ascending sensory pathways of the nervous system.",
+    "tags": [
+      "sensory pathways"
+    ]
+  },
+  {
+    "id": 20,
+    "title": "Reflex Arc & Stretch Reflex",
+    "category": "Physiology",
+    "file": "physio-06-reflex-arc-stretch-reflex.html",
+    "description": "The reflex arc and stretch reflex physiology.",
+    "tags": [
+      "reflex arc",
+      "stretch reflex"
+    ]
+  },
+  {
+    "id": 21,
+    "title": "Superficial Reflexes",
+    "category": "Physiology",
+    "file": "physio-07-superficial-reflexes.html",
+    "description": "Neuroscience of superficial reflexes.",
+    "tags": [
+      "superficial reflexes"
+    ]
+  },
+  {
+    "id": 22,
+    "title": "Motor Pathways",
+    "category": "Physiology",
+    "file": "physio-08-motor-pathways.html",
+    "description": "Study guide on motor pathways of the CNS.",
+    "tags": [
+      "motor pathways"
+    ]
+  },
+  {
+    "id": 23,
+    "title": "Motor Cortex",
+    "category": "Physiology",
+    "file": "physio-09-motor-cortex.html",
+    "description": "Lecture on the motor cortex and its functions.",
+    "tags": [
+      "motor cortex"
+    ]
+  },
+  {
+    "id": 24,
+    "title": "Basal Ganglia",
+    "category": "Physiology",
+    "file": "physio-10-basal-ganglia.html",
+    "description": "Dashboard covering the basal ganglia circuits and function.",
+    "tags": [
+      "basal ganglia"
+    ]
+  },
+  {
+    "id": 25,
+    "title": "Functions of the Brainstem",
+    "category": "Physiology",
+    "file": "physio-11-functions-of-brainstem.html",
+    "description": "Physiological functions of the brainstem.",
+    "tags": [
+      "brainstem",
+      "physiology"
+    ]
+  },
+  {
+    "id": 26,
+    "title": "Limbic System",
+    "category": "Physiology",
+    "file": "physio-12-limbic-system.html",
+    "description": "Limbic system, emotional behavior, and motivation.",
+    "tags": [
+      "limbic system",
+      "emotion",
+      "motivation"
+    ]
+  },
+  {
+    "id": 27,
+    "title": "Physiology of Vision",
+    "category": "Physiology",
+    "file": "physio-13-vision-physiology.html",
+    "description": "Dashboard covering the physiology of the visual system.",
+    "tags": [
+      "vision",
+      "visual pathway"
+    ]
+  },
+  {
+    "id": 28,
+    "title": "Pain Modulation",
+    "category": "Physiology",
+    "file": "physio-14-pain-modulation.html",
+    "description": "Study resource on pain physiology and modulation.",
+    "tags": [
+      "pain",
+      "modulation"
+    ]
+  },
+  {
+    "id": 29,
+    "title": "EEG and Sleep",
+    "category": "Physiology",
+    "file": "physio-15-eeg-and-sleep.html",
+    "description": "EEG patterns and sleep physiology — Batch 44.",
+    "tags": [
+      "eeg",
+      "sleep"
+    ]
+  }
+]
